@@ -19,13 +19,19 @@ class App extends Component {
   navBars() {
     if (this.state.sideNav === 'sideNavShow') {
       this.setState({sideNav: 'sideNavHide', app: 'appSlideIn'});
+      document.body.classList.remove('fixHeight');
     } else {
       this.setState({sideNav: 'sideNavShow', app: 'appSlideOut'});
+      document.body.classList.add('fixHeight');
     }
   }
   render() {
     return (
-      <div className="appRoot">
+      <div className="appRoot"> 
+        <div className={this.state.sideNav}>
+          <h1>sideNav</h1>
+        </div>
+        
         <div className={this.state.app}>
           <header>
             <button className="nav" onClick={this.navBars}>
@@ -37,9 +43,36 @@ class App extends Component {
           <main>
             <h1>Main</h1>
           </main>
-        </div>
-        <div className={this.state.sideNav}>
-          <h1>sideNav</h1>
+          <main>
+            <h1>Main</h1>
+          </main>
+          <main>
+            <h1>Main</h1>
+          </main>
+          <main>
+            <h1>Main</h1>
+          </main>
+          <main>
+            <h1>Main</h1>
+          </main>
+          <main>
+            <h1>Main</h1>
+          </main>
+          <main>
+            <h1>Main</h1>
+          </main>
+          <main>
+            <h1>Main</h1>
+          </main>
+          <main>
+            <h1>Main</h1>
+          </main>
+          <main>
+            <h1>Main</h1>
+          </main>
+          <main>
+            <h1>Main</h1>
+          </main>
         </div>
       </div>
     );
