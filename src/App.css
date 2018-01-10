@@ -1,21 +1,62 @@
-.App {
+.appRoot{
+  /* display: flex; */
+}
+.app {
   display: flex;
   flex-direction: column;
 }
 
-.App header {
+.appSlideIn {
+  animation: App-slide-in 0.2s linear;
+  transform: translateX(0);
+  display: flex;
+  flex-direction: column;
+}
+
+.appSlideOut {
+  animation: App-slide-out 0.2s linear;
+  transform: translateX(66%);
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  box-shadow: 0 2px 10px 6px #ccc;
   color: white;
   display: flex;
+  justify-content: space-betwee;
   height: 60px;
   background: black;
 }
 
 .nav {
-  width:60px;
+  width: 60px;
+  color: white;
+  border: none;
+  outline: none;
+  background-color: Transparent;
 }
 
 .logo {
   width: 100%;
+  animation: App-logo-spin infinite 20s linear;
+}
+
+.sideNav{
+  transform: translateX(-100%);
+}
+
+.sideNavHide {
+  animation: App-nav-out 0.2s linear;
+  background: red;
+  transform: translateX(-100%);
+}
+
+.sideNavShow {
+  width: 66%;
+  animation: App-nav-in 0.2s linear;
+  transform: translateX(0);
+  background: red;
 }
 
 @keyframes App-logo-spin {
@@ -24,5 +65,41 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes App-nav-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes App-nav-out {
+  from {
+    transform: translateX(-33%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes App-slide-in {
+  from {
+    transform: translateX(66%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes App-slide-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(66%);
   }
 }
