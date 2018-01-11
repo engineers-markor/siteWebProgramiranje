@@ -49,29 +49,29 @@ class App extends Component {
       .classList
       .remove('fixHeight');
   }
+
   render() {
     return (
       <div className="appRoot">
         <div className={this.state.sideNav}>
-
           <h1>Title</h1>
-          <nav
-            style={{
-            display: 'flex',
-            flexDirection: "column"
-          }}>
-            <Link to="/">Home</Link>
-            <Link to="/lessons">Lessons</Link>
-            <Link to="/about">About</Link>
+          <nav className="navMenu">
+            <Link className="navLink" to="/">Home</Link>
+            <Link className="navLink" to="/lessons">Lessons</Link>
+            <Link to="/about" className="navLink">About</Link>
           </nav>
         </div>
         <div className={this.state.app}>
           <header>
             <button className="nav" onClick={this.navBarsToggle}>
-              <i className="fa fa-bars fa-2x"></i>
+              <i className="fa fa-bars fa-2x" aria-hidden="true"></i>
             </button>
             <img className="logo" src={logo} alt="logo"/>
-            <div className="nav"></div>
+            <button className="nav">
+              <Link to="/login">
+                <i className="fa fa-sign-in fa-2x" aria-hidden="true"></i>
+              </Link>
+            </button>
           </header>
           <main>
             <Switch>

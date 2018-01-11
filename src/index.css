@@ -5,3 +5,28 @@ body {
   max-width: 100%;
   overflow-x: hidden;
 }
+
+a {
+  text-decoration: none;
+}
+
+
+/* visited link */
+
+a:visited {
+  color: white;
+}
+
+
+/* mouse over link */
+
+a:hover {
+  color: hotpink;
+}
+
+
+/* selected link */
+
+a:active {
+  color: hotpink;
+}
