@@ -1,0 +1,31 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.singup{
+    width: 210px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+    border-radius: 5px;
+    padding: 8px;    
+}
+.singup input{
+    margin: 5px;
+}
+
+.login{
+    width: 210px;    
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+    border-radius: 5px;
+    padding: 8px;   
+}
+
+.login input{
+    margin: 5px;
+}

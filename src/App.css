@@ -28,7 +28,7 @@ header {
   color: white;
   display: flex;
   justify-content: space-betwee;
-  height: 60px;
+  height: 80px;
   background: black;
 }
 
@@ -39,6 +39,10 @@ header {
   border: none;
   outline: none;
   background-color: Transparent;
+}
+
+.nav:hover{
+  color:hotpink;
 }
 
 .navMenu {
@@ -52,8 +56,19 @@ header {
   padding-left: 8px;
 }
 
-.logo {
+.logo{
   width: 100%;
+  display: flex;
+}
+
+.logo h1{
+  margin: auto;
+}
+
+.logo img{
+  /* width: 100%; */
+  height: 60px;
+  margin: auto;
   animation: App-logo-spin infinite 20s linear;
 }
 

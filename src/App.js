@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import './App.css';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import {Link, Route, Switch} from 'react-router-dom';
+import {app, base} from './base';
 import Home from './components/Home';
 import Lesson from './components/Lesson';
 import About from './components/About';
+import Login from './components/Login';
+import Logout from './components/Logout';
 
 class App extends Component {
 
@@ -13,7 +16,9 @@ class App extends Component {
 
     this.state = {
       sideNav: 'sideNav',
-      app: 'app'
+      app: 'app',
+      user: {},
+      auth: false
     }
 
     this.navBarsToggle = this
@@ -35,19 +40,56 @@ class App extends Component {
   }
 
   navBarsShow() {
-    this.setState({sideNav: 'sideNavShow', app: 'appSlideOut'});
-    document
-      .body
-      .classList
-      .add('fixHeight');
+    if (this.state.sideNav === 'sideNavHide' || this.state.sideNav === 'sideNav') {
+      this.setState({sideNav: 'sideNavShow', app: 'appSlideOut'});
+      document
+        .body
+        .classList
+        .add('fixHeight');
+    }
   }
 
   navBarsHide() {
-    this.setState({sideNav: 'sideNavHide', app: 'appSlideIn'});
-    document
-      .body
-      .classList
-      .remove('fixHeight');
+    if (this.state.sideNav === 'sideNavShow') {
+      this.setState({sideNav: 'sideNavHide', app: 'appSlideIn'});
+      document
+        .body
+        .classList
+        .remove('fixHeight');
+
+    }
+  }
+
+  componentWillMount() {
+    this.removeAuthListener = app
+      .auth()
+      .onAuthStateChanged(user => {
+        if (user) {
+          base
+            .fetch(`users/${user.uid}`, {context: this})
+            .then(data => {
+              this.setState({
+                auth: true,
+                user: {
+                  uid: user.uid,
+                  username: data.username,
+                  photoUrl: data.photoUrl,
+                  email: data.email
+                }
+              });
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        } else {
+          this.setState({auth: false});
+        }
+      });
+  }
+
+  componentWillUnmount() {
+    base.removeBinding(this.messagesRef);
+    this.removeAuthListener();
   }
 
   render() {
@@ -66,26 +108,32 @@ class App extends Component {
             <button className="nav" onClick={this.navBarsToggle}>
               <i className="fa fa-bars fa-2x" aria-hidden="true"></i>
             </button>
-            <img className="logo" src={logo} alt="logo"/>
-            <button className="nav">
-              <Link to="/login">
-                <i className="fa fa-sign-in fa-2x" aria-hidden="true"></i>
-              </Link>
-            </button>
+            <Link className="logo" to="/">
+              {/* <img src={logo} alt="logo"/> */}
+              <h1>Learn Code</h1>
+            </Link>
+            {!this.state.auth
+              ? <button className="nav">
+                  <Link to="/login">
+                    <i className="fa fa-sign-in fa-2x" aria-hidden="true"></i>
+                  </Link>
+                </button>
+              : <button className="nav">
+                <Link to="/logout">
+                  <i className="fa fa-sign-out fa-2x" aria-hidden="true"></i>
+                </Link>
+              </button>
+}
           </header>
-          <main>
+          <main onClick={this.navBarsHide}>
             <Switch>
-              <Route
-                path="/"
-                exact
-                render={() => (<Home sideNav={this.state.sideNav} navBarsHide={this.navBarsHide}/>)}/>
+              <Route path="/" exact render={() => (<Home navBarsHide={this.navBarsHide}/>)}/>
               <Route
                 path="/lessons"
-                render={() => (<Lesson sideNav={this.state.sideNav} navBarsHide={this.navBarsHide}/>)}/>
-
-              <Route
-                path="/about"
-                render={() => (<About sideNav={this.state.sideNav} navBarsHide={this.navBarsHide}/>)}/>
+                render={() => (<Lesson navBarsHide={this.navBarsHide}/>)}/>
+              <Route path="/about" render={() => (<About navBarsHide={this.navBarsHide}/>)}/>
+              <Route path="/login" render={() => (<Login navbarsHide={this.navBarsHide}/>)}/>
+              <Route path="/logout" render={() => (<Logout navbarsHide={this.navBarsHide}/>)}/>
             </Switch>
           </main>
         </div>
