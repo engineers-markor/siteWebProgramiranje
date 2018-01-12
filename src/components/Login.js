@@ -13,7 +13,7 @@ export default class Login extends Component {
             loginEmail: '',
             loginPassword: '',
             redirect: false,
-            loading: true
+            loading: false
         }
         this.createAccount = this
             .createAccount
@@ -42,24 +42,33 @@ export default class Login extends Component {
         this.login = this
             .login
             .bind(this);
+
+        this.writeError = this
+            .writeError
+            .bind(this);
     }
 
     setUsername(e) {
+        this.resetInput(e);
         this.setState({username: e.target.value})
     }
 
     setPassword(e) {
+        this.resetInput(e);
         this.setState({password: e.target.value})
     }
 
     setEmail(e) {
+        this.resetInput(e);
         this.setState({email: e.target.value})
     }
 
     setLoginEmail(e) {
+        this.resetInput(e);
         this.setState({loginEmail: e.target.value})
     }
     setLoginPassword(e) {
+        this.resetInput(e);
         this.setState({loginPassword: e.target.value})
     }
 
@@ -81,7 +90,7 @@ export default class Login extends Component {
 
     createAccount(e) {
         e.preventDefault();
-        if (this.state.password.length > 5) {
+        if (this.validateEmail(this.state.email) && this.validatePassword(this.state.password)) {
             app
                 .auth()
                 .fetchProvidersForEmail(this.state.email)
@@ -121,8 +130,43 @@ export default class Login extends Component {
         });
     }
 
-    render() {
+    validateEmail(email) {
+        const re = new RegExp("[0-9A-Za-z._]+@[0-9A-Za-z._]+\\.[0-9A-Za-z]+");
+        return re.test(email);
+    }
 
+    validatePassword(password) {
+        const reText = new RegExp("[a-zA-Z]*[0-9]+[a-zA-Z]*");
+        const reNumb = new RegExp("[0-9]*[a-zA-Z]+[0-9]*");
+        return reText.test(password) && reNumb.test(reNumb) && password.length > 5;
+    }
+
+    writeError(e) {
+        let valide = false;
+        switch (e.target.className) {
+            case "email":
+                valide = this.validateEmail(e.target.value);
+                break;
+            case "password":
+                valide = this.validatePassword(e.target.value);
+                break;
+            default:
+                break;
+        }
+
+        if (!valide && e.target.className.indexOf('error') === -1) {
+            e.target.className += " error"
+        }
+    }
+
+    resetInput(e) {
+        e.target.className = e
+            .target
+            .className
+            .split(' ')[0];
+    }
+
+    render() {
         if (this.state.redirect) {
             return <Redirect exact to="/"/>
         }
@@ -137,33 +181,39 @@ export default class Login extends Component {
                         onChange={this.setUsername}
                         placeholder="User Name"/>
                     <input
+                        className="email nesto"
+                        onBlur={this.writeError}
                         type="email"
                         value={this.state.email}
                         onChange={this.setEmail}
                         placeholder="Email"/>
                     <input
+                        className="password"
+                        onBlur={this.writeError}
                         placeholder="Password"
                         type="password"
                         value={this.state.password}
                         onChange={this.setPassword}/>
-                    <input className="pt-button" type="submit" value="Create Account"/>
+                    <input className="button" type="submit" value="Create Account"/>
                 </form>
 
                 <form className="login" onSubmit={this.login}>
                     <h5>Log In</h5>
                     <input
+                        className="email"
+                        onBlur={this.validateEmail}
                         type="email"
                         value={this.state.loginEmail}
                         onChange={this.setLoginEmail}
-                        placeholder="Email"
-                        required/>
+                        placeholder="Email"/>
                     <input
+                        className="password"
+                        onBlur={this.validatePassword}
                         placeholder="Password"
                         type="password"
                         value={this.state.loginPassword}
-                        onChange={this.setLoginPassword}
-                        required/>
-                    <input className="pt-button" type="submit" value="Log In"/>
+                        onChange={this.setLoginPassword}/>
+                    <input className="button" type="submit" value="Log In"/>
                 </form>
             </div>
         );

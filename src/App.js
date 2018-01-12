@@ -96,7 +96,7 @@ class App extends Component {
     return (
       <div className="appRoot">
         <div className={this.state.sideNav}>
-          <h1>Title</h1>
+          <h1>Learn Code</h1>
           <nav className="navMenu">
             <Link className="navLink" to="/">Home</Link>
             <Link className="navLink" to="/lessons">Lessons</Link>
@@ -132,8 +132,15 @@ class App extends Component {
                 path="/lessons"
                 render={() => (<Lesson navBarsHide={this.navBarsHide}/>)}/>
               <Route path="/about" render={() => (<About navBarsHide={this.navBarsHide}/>)}/>
-              <Route path="/login" render={() => (<Login navbarsHide={this.navBarsHide}/>)}/>
-              <Route path="/logout" render={() => (<Logout navbarsHide={this.navBarsHide}/>)}/>
+              <Route
+                path="/login"
+                render={() => {
+                this.login = true;
+                return <Login navbarsHide={this.navBarsHide}/>;
+              }}/>
+              <Route
+                path="/logout"
+                render={() => (<Logout navbarsHide={this.navBarsHide}/>)}/>
             </Switch>
           </main>
         </div>

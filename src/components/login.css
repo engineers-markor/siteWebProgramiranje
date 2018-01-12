@@ -15,6 +15,8 @@
 }
 .singup input{
     margin: 5px;
+    padding: 5px;
+    border-radius: 2px;    
 }
 
 .login{
@@ -28,4 +30,16 @@
 
 .login input{
     margin: 5px;
+    padding: 5px;
+    border-radius: 2px;        
+}
+
+.button{
+    background: black;
+    color: white;
+    border:0;
+}
+
+.error{
+    color:red;
 }
