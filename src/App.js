@@ -41,7 +41,7 @@ class App extends Component {
 
   navBarsShow() {
     if (this.state.sideNav === 'sideNavHide' || this.state.sideNav === 'sideNav') {
-      this.setState({sideNav: 'sideNavShow', app: 'appSlideOut'});
+      this.setState({sideNav: 'sideNavShow', app: 'app appSlideOut'});
       document
         .body
         .classList
@@ -51,7 +51,7 @@ class App extends Component {
 
   navBarsHide() {
     if (this.state.sideNav === 'sideNavShow') {
-      this.setState({sideNav: 'sideNavHide', app: 'appSlideIn'});
+      this.setState({sideNav: 'sideNavHide', app: 'app appSlideIn'});
       document
         .body
         .classList
@@ -96,7 +96,7 @@ class App extends Component {
     return (
       <div className="appRoot">
         <div className={this.state.sideNav}>
-          <h1>Learn Code</h1>
+          <h1>Menu</h1>
           <nav className="navMenu">
             <Link className="navLink" to="/">Home</Link>
             <Link className="navLink" to="/lessons">Lessons</Link>
@@ -104,7 +104,7 @@ class App extends Component {
           </nav>
         </div>
         <div className={this.state.app}>
-          <header>
+          <header className="header">
             <button className="nav" onClick={this.navBarsToggle}>
               <i className="fa fa-bars fa-2x" aria-hidden="true"></i>
             </button>
@@ -125,7 +125,7 @@ class App extends Component {
               </button>
 }
           </header>
-          <main onClick={this.navBarsHide}>
+          <main className="main" onClick={this.navBarsHide}>
             <Switch>
               <Route path="/" exact render={() => (<Home navBarsHide={this.navBarsHide}/>)}/>
               <Route

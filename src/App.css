@@ -11,20 +11,14 @@
 
 .appSlideIn {
   animation: App-slide-in 0.2s linear;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
 }
 
 .appSlideOut {
   animation: App-slide-out 0.2s linear;
-  transform: translateX(60%);
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  transform: translateX(200px);
 }
 
-header {
+.header {
   color: white;
   display: flex;
   justify-content: space-betwee;
@@ -41,8 +35,8 @@ header {
   background-color: Transparent;
 }
 
-.nav:hover{
-  color:hotpink;
+.nav:hover {
+  color: aquamarine;
 }
 
 .navMenu {
@@ -56,17 +50,16 @@ header {
   padding-left: 8px;
 }
 
-.logo{
+.logo {
   width: 100%;
   display: flex;
 }
 
-.logo h1{
+.logo h1 {
   margin: auto;
 }
 
-.logo img{
-  /* width: 100%; */
+.logo img {
   height: 60px;
   margin: auto;
   animation: App-logo-spin infinite 20s linear;
@@ -75,27 +68,66 @@ header {
 .sideNav {
   color: white;
   position: absolute;
-  width: 100%;
-  transform: translateX(-100%);
+  width: 200px;
+  background: black;
+  transform: translateX(-200px);
 }
 
 .sideNavHide {
+  color: white;  
   position: absolute;
-  width: 100%;
+  width: 200px;
   height: 100%;
   animation: App-nav-out 0.2s linear;
   background: black;
-  transform: translateX(-100%);
+  transform: translateX(-200px);
 }
 
 .sideNavShow {
   color: white;
-  width: 60%;
+  width: 200px;
   height: 100%;
   position: absolute;
   animation: App-nav-in 0.2s linear;
   transform: translateX(0);
   background: black;
+}
+
+.flexContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContainer {
+  background: red;
+  width: 100%;
+  height: 400px;
+}
+
+.sideContainer {
+  width: 100%;
+  background: green;
+  height: 400px;
+}
+
+@media only screen and (min-width: 1000px) {
+  .main {
+    display: flex;
+    justify-content: center;
+  }
+  .flexContainer {
+    margin-top: 24px;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+  }
+  .mainContainer {
+    background: red;
+    width: 60%;
+  }
+  .sideContainer {
+    width: 35%;
+  }
 }
 
 @keyframes App-logo-spin {
@@ -109,7 +141,7 @@ header {
 
 @keyframes App-nav-in {
   from {
-    transform: translateX(-100%);
+    transform: translateX(-200px);
   }
   to {
     transform: translateX(0);
@@ -118,16 +150,16 @@ header {
 
 @keyframes App-nav-out {
   from {
-    transform: translateX(-40%);
+    transform: translateX(0);
   }
   to {
-    transform: translateX(-100%);
+    transform: translateX(-200px);
   }
 }
 
 @keyframes App-slide-in {
   from {
-    transform: translateX(60%);
+    transform: translateX(200px);
   }
   to {
     transform: translateX(0);
@@ -139,6 +171,6 @@ header {
     transform: translateX(0);
   }
   to {
-    transform: translateX(60%);
+    transform: translateX(200px);
   }
 }

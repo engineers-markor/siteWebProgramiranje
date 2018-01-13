@@ -1,0 +1,11 @@
+.loading {
+    position: absolute;
+    top: 80px;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+}
+
+.loading i{
+    margin: auto;
+}
