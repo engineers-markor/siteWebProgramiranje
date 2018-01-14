@@ -98,6 +98,12 @@
   flex-direction: column;
 }
 
+.flexCourses{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .mainContainer {
   background: red;
   width: 100%;
@@ -121,6 +127,12 @@
     justify-content: space-between;
     width: 80%;
   }
+
+  .flexCourses{
+    width: 80%;
+    
+  }
+
   .mainContainer {
     background: red;
     width: 60%;

@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import './App.css';
-// import logo from './logo.svg';
 import {Link, Route, Switch} from 'react-router-dom';
 import {app, base} from './base';
 import Home from './components/Home';
-import Lesson from './components/Lesson';
+import Courses from './components/Courses';
 import About from './components/About';
 import Login from './components/Login';
 import Logout from './components/Logout';
+import Lessons from './components/Lessons';
 
 class App extends Component {
 
@@ -18,7 +18,8 @@ class App extends Component {
       sideNav: 'sideNav',
       app: 'app',
       user: {},
-      auth: false
+      auth: false,
+      coursePath: ''
     }
 
     this.navBarsToggle = this
@@ -99,7 +100,7 @@ class App extends Component {
           <h1>Menu</h1>
           <nav className="navMenu">
             <Link className="navLink" to="/">Home</Link>
-            <Link className="navLink" to="/lessons">Lessons</Link>
+            <Link className="navLink" to="/courses">Courses</Link>
             <Link to="/about" className="navLink">About</Link>
           </nav>
         </div>
@@ -129,8 +130,9 @@ class App extends Component {
             <Switch>
               <Route path="/" exact render={() => (<Home navBarsHide={this.navBarsHide}/>)}/>
               <Route
-                path="/lessons"
-                render={() => (<Lesson navBarsHide={this.navBarsHide}/>)}/>
+                exact
+                path="/courses"
+                render={() => (<Courses navBarsHide={this.navBarsHide}/>)}/>
               <Route path="/about" render={() => (<About navBarsHide={this.navBarsHide}/>)}/>
               <Route
                 path="/login"
@@ -141,6 +143,12 @@ class App extends Component {
               <Route
                 path="/logout"
                 render={() => (<Logout navbarsHide={this.navBarsHide}/>)}/>
+              <Route
+                path="/courses/:id"
+                children={(props) => {
+                  console.log(props.match.params.id);
+                return <Lessons id={props.match.params.id}/>;
+            }}/>
             </Switch>
           </main>
         </div>

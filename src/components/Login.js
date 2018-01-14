@@ -136,7 +136,7 @@ export default class Login extends Component {
             data: {
                 username: username,
                 email: email,
-                photoUrl: photoUrl
+                photoUrl: photoUrl,
             }
         });
     }
