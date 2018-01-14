@@ -74,7 +74,7 @@
 }
 
 .sideNavHide {
-  color: white;  
+  color: white;
   position: absolute;
   width: 200px;
   height: 100%;
@@ -98,7 +98,7 @@
   flex-direction: column;
 }
 
-.flexCourses{
+.flexCourses {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -127,12 +127,9 @@
     justify-content: space-between;
     width: 80%;
   }
-
-  .flexCourses{
+  .flexCourses {
     width: 80%;
-    
   }
-
   .mainContainer {
     background: red;
     width: 60%;

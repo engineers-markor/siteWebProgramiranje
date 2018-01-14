@@ -7,10 +7,11 @@ const base = Rebase.createClass(app.database());
 
 const getCourses = new Promise((resolve, reject) => {
     base
-        .fetch(`courses/`, {context: this})
+        .fetch(`listCourses/`, {context: this})
         .then(data => {
             resolve(data);
-        });
+        })
+        .catch(error => {});;
 });
 
 const getCoursesLessons = (id) => {
@@ -20,6 +21,9 @@ const getCoursesLessons = (id) => {
             .then(data => {
                 resolve(data);
             })
+            .catch(error => {
+                reject(error);
+            });
     })
 }
 

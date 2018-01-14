@@ -180,7 +180,7 @@ export default class Login extends Component {
     render() {
 
         if (this.state.redirect) {
-            return <Redirect exact to="/"/>
+            return <Redirect exact to="/courses"/>
         }
 
         if (this.state.loading) {

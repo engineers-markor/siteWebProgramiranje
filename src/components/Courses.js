@@ -18,6 +18,8 @@ export default class Courses extends Component {
 
         getCourses.then(courses => {
             this.setState({courses: courses})
+        }).catch(error =>{
+            console.log(error);
         });
     }
 

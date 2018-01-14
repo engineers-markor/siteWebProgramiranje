@@ -79,13 +79,12 @@ class App extends Component {
                 }
               });
             })
-            .catch(error => {
-              console.log(error);
-            });
+            .catch(error => {});
         } else {
           this.setState({auth: false});
         }
-      });
+      })
+
   }
 
   componentWillUnmount() {
@@ -146,9 +145,8 @@ class App extends Component {
               <Route
                 path="/courses/:id"
                 children={(props) => {
-                  console.log(props.match.params.id);
-                return <Lessons id={props.match.params.id}/>;
-            }}/>
+                return <Lessons id={props.match.params.id} auth={this.state.auth}/>;
+              }}/>
             </Switch>
           </main>
         </div>
