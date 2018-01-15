@@ -2,19 +2,24 @@ import React, {Component} from 'react';
 import {getCoursesLessons} from '../base';
 import Loading from './Loading';
 import {Link, Route} from 'react-router-dom';
-
+import Lesson from './Lesson';
 export default class Lessons extends Component {
     constructor(props) {
         super(props);
         this.state = {
             course: {},
-            loading: true
+            loading: true,
+            lessons: []
         }
     }
 
     componentDidMount() {
         getCoursesLessons(this.props.id).then(data => {
-            this.setState({course: data, loading: false});
+            this.setState({
+                course: data,
+                loading: false,
+                lessons: Object.keys(data.lessons)
+            });
         }).catch(error => {
             this.setState({loading: false});
         });
@@ -30,16 +35,33 @@ export default class Lessons extends Component {
             return <h1>Molim vas kako biste poceli kurs prvo se besplatno ulogujte.</h1>
         }
 
-        console.log(this.state);
         return (
             <div className="flexLesson">
                 <div className="contentLessons">
-                    <h1>Course {this.state.course.name}</h1>
+                    <Route
+                        path="/courses/:courseId/:lessonId"
+                        children={(props) => {
+                        if (props.match) {
+                            return <Lesson
+                                courseId={props.match.params.courseId}
+                                lessonId={props.match.params.lessonId}/>;
+                        } else {
+                            return (
+                                <div>
+                                    <h1>Course Owerview {this.props.id}
+                                    </h1>
+                                </div>
+                            );
+                        }
+                    }}/>
                 </div>
                 <div className="navLessons">
-                    <Link to={'/courses/' + this.props.id + '/1'}>Lessons 1</Link>
-                    <Link to={'/courses/' + this.props.id + '/2'}>Lessons 2</Link>
-                    <Link to={'/courses/' + this.props.id + '/3'}>Lessons 3</Link>
+                    {this
+                        .state
+                        .lessons
+                        .map((lesson) => {
+                            return <Link key={lesson} to={'/courses/' + this.props.id + "/" + lesson}>{this.state.course.lessons[lesson].name}</Link>
+                        })}
                 </div>
             </div>
         )
