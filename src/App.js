@@ -109,7 +109,6 @@ class App extends Component {
               <i className="fa fa-bars fa-2x" aria-hidden="true"></i>
             </button>
             <Link className="logo" to="/">
-              {/* <img src={logo} alt="logo"/> */}
               <h1>Learn Code</h1>
             </Link>
             {!this.state.auth
