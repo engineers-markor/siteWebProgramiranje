@@ -3,6 +3,8 @@ import {getCoursesLessons} from '../base';
 import Loading from './Loading';
 import {Link, Route} from 'react-router-dom';
 import Lesson from './Lesson';
+import {overview} from '../CourseJS';
+
 export default class Lessons extends Component {
     constructor(props) {
         super(props);
@@ -48,14 +50,44 @@ export default class Lessons extends Component {
                         } else {
                             return (
                                 <div>
-                                    <h1>Course Owerview {this.props.id}
+                                    <h1>
+                                        {overview.title}
                                     </h1>
+                                    {overview
+                                        .questions
+                                        .map((question, index) => {
+                                            return (
+                                                <div>
+                                                    <h4>
+                                                        {question}
+                                                    </h4>
+                                                    <p>
+                                                        {overview.answers[index]}
+                                                    </p>
+                                                </div>
+                                            );
+                                        })}
+                                    {overview
+                                        .links
+                                        .map((link, index) => {
+                                            return (
+                                                <div>
+                                                    <a
+                                                        target="blank"
+                                                        style={{
+                                                        color: `blue`
+                                                    }}
+                                                        href={link}>{overview.linksDescription[index]}</a>
+                                                </div>
+                                            );
+                                        })}
                                 </div>
                             );
                         }
                     }}/>
                 </div>
                 <div className="navLessons">
+                    <Link to={'/courses/' + this.props.id + "/" }>Overview</Link>
                     {this
                         .state
                         .lessons
