@@ -12,10 +12,6 @@ export default class Courses extends Component {
     }
 
     componentWillMount() {
-        this
-            .props
-            .navBarsHide();
-
         getCourses.then(courses => {
             this.setState({courses: courses})
         }).catch(error =>{

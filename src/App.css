@@ -1,208 +1,93 @@
-.fixHeight {
-  max-height: 100%;
-  overflow-y: hidden;
-}
-
 .app {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.appSlideIn {
-  animation: App-slide-in 0.2s linear;
-}
-
-.appSlideOut {
-  animation: App-slide-out 0.2s linear;
-  transform: translateX(200px);
+  position: absolute;
+  left: 0;
+  transition: 0.3s;
+  display: grid;
+  min-height: 100vh;
+  min-width: 100%;
+  grid-template-rows: 60px 1fr 60px;
+  grid-template-columns: 1fr;
+  grid-template-areas: "header" "content" "footer";
 }
 
 .header {
-  color: white;
-  display: flex;
-  justify-content: space-betwee;
-  height: 80px;
+  grid-area: header;
   background: black;
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+  justify-items: center;
+  align-items: center;
+  grid-template-areas: "showAside title logout";
 }
 
-.nav {
-  width: 60px;
-  cursor: pointer;
-  color: white;
-  border: none;
-  outline: none;
-  background-color: Transparent;
+.showAside {
+  grid-area: showAside;
 }
 
-.nav:hover {
-  color: aquamarine;
+.title {
+  grid-area: title;
 }
 
-.navMenu {
-  display: flex;
-  flex-direction: column;
+.navLinks {
+  grid-area: navLinks;
+  display: none;
 }
 
-.navLink {
-  height: 50px;
-  line-height: 50px;
-  padding-left: 8px;
+.logout {
+  grid-area: logout;
 }
 
-.logo {
-  width: 100%;
-  display: flex;
-}
-
-.logo h1 {
-  margin: auto;
-}
-
-.logo img {
-  height: 60px;
-  margin: auto;
-  animation: App-logo-spin infinite 20s linear;
-}
-
-.sideNav {
-  color: white;
-  position: absolute;
-  width: 200px;
-  background: black;
-  transform: translateX(-200px);
-}
-
-.sideNavHide {
-  color: white;
-  position: absolute;
-  width: 200px;
-  height: 100%;
-  animation: App-nav-out 0.2s linear;
-  background: black;
-  transform: translateX(-200px);
-}
-
-.sideNavShow {
-  color: white;
-  width: 200px;
-  height: 100%;
-  position: absolute;
-  animation: App-nav-in 0.2s linear;
-  transform: translateX(0);
-  background: black;
-}
-
-.flexContainer {
-  display: flex;
-  flex-direction: column;
-}
-
-.flexCourses {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.mainContainer {
+.main {
+  grid-area: content;
   background: red;
+}
+
+.footer {
+  grid-area: footer;
+  background: aqua;
+}
+
+.aside {
+  position: fixed;
+  left: -120px;
+  width: 120px;
+  height: 100%;
+  display: grid;
+  grid-template-rows:60px auto;
+  justify-items: center;
+  align-items: center;
+  align-content: flex-start;
+  transition: 0.3s;
+  background: yellow;
+}
+
+.aside a{
   width: 100%;
-  height: 400px;
+  height: 48px;
+  text-align: center;
 }
 
-.sideContainer {
-  width: 100%;
-  background: green;
-  height: 400px;
+
+.asideShow {
+  left: 0;
 }
 
-@media only screen and (min-width: 1000px) {
-  .main {
-    min-height: calc(100vh - 80px);
-    display: flex;
-    justify-content: center;
-  }
-  .flexContainer {
-    margin-top: 24px;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 80%;
-  }
-  .flexCourses {
-    width: 80%;
-  }
-  .mainContainer {
-    background: red;
-    width: 60%;
-  }
-  .sideContainer {
-    width: 35%;
-  }
-
-  .flexLesson{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .navLessons{
-    display: flex;
-    width: 20%;
-    min-width: 100px;
-    flex-direction: column;
-    background: black;
-  }
-  
-  .navLessons a{
-    padding: 10px;
-  }
-  
-  .contentLessons{
-    width: 100%;
-  }
+.appSlideOut {
+  left: 120px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media only screen and (min-width: 600px) {
+  .header {
+    grid-template-columns: 1fr 1fr 60px;
+    grid-template-areas: "title navLinks logout"
   }
-  to {
-    transform: rotate(360deg);
+  .showAside {
+    display: none;
   }
-}
-
-@keyframes App-nav-in {
-  from {
-    transform: translateX(-200px);
+  .navLinks {
+    display: grid;
   }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes App-nav-out {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-200px);
-  }
-}
-
-@keyframes App-slide-in {
-  from {
-    transform: translateX(200px);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes App-slide-out {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(200px);
+  .navLinks{
+    display: block;
   }
 }
