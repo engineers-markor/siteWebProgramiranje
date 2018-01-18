@@ -5,8 +5,8 @@ export default class Lesson extends Component {
         return (
             <div>
                 <h1>
-                    Course {this.props.courseId}<br/>
-                    Lesson {this.props.lessonId}
+                     {this.props.courseId}<br/>
+                     {this.props.lessonId}
                 </h1>
             </div>
         )
