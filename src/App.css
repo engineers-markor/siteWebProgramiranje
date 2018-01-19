@@ -39,12 +39,14 @@
 
 .main {
   grid-area: content;
-  background: red;
+  display: grid;
 }
 
 .footer {
   grid-area: footer;
-  background: aqua;
+  text-align: center;
+  border-top: 1px solid gainsboro;
+  padding: 20px;
 }
 
 .aside {
@@ -53,20 +55,21 @@
   width: 120px;
   height: 100%;
   display: grid;
-  grid-template-rows:60px auto;
+  grid-template-rows: 60px auto;
   justify-items: center;
   align-items: center;
   align-content: flex-start;
   transition: 0.3s;
-  background: yellow;
+  color: white;
+  background: black;
 }
 
-.aside a{
+.aside a {
   width: 100%;
   height: 48px;
   text-align: center;
+  line-height: 48px;
 }
-
 
 .asideShow {
   left: 0;
@@ -76,18 +79,47 @@
   left: 120px;
 }
 
+.loginPopup{
+  position: fixed;
+  left:calc(100vw/2 - 105px);
+  top:calc(100vh/2 - 211px);
+  display: none;
+  background: red;
+  border-radius: 5px;
+  z-index: 3;
+}
+
+.showLoginPopup{
+  display: block;
+}
+
 @media only screen and (min-width: 600px) {
   .header {
-    grid-template-columns: 1fr 1fr 60px;
-    grid-template-areas: "title navLinks logout"
+    grid-template-columns: 1fr 50% 30% 60px;
+    grid-template-areas: ".. title navLinks logout"
+  }
+  .title {
+    justify-self: flex-start;
+  }
+  .main {
+    grid-template-columns: 1fr 80% 60px;
+    grid-template-rows: 18px 1fr 16px;
+    grid-template-areas: ".. .. .." ".. content .. " ".. .. ..";
+  }
+  .content {
+    grid-area: content;
   }
   .showAside {
     display: none;
   }
   .navLinks {
+    justify-self: flex-end;
+    align-self: stretch;
     display: grid;
-  }
-  .navLinks{
-    display: block;
+    grid-gap: 8px;
+    font-size: 18px;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }

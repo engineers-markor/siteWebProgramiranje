@@ -22,8 +22,12 @@ class App extends Component {
             coursePath: ''
         };
 
-        this.hideAside = this.hideAside.bind(this);
-        this.toggleAside = this.toggleAside.bind(this);
+        this.hideAside = this
+            .hideAside
+            .bind(this);
+        this.toggleAside = this
+            .toggleAside
+            .bind(this);
 
     }
 
@@ -50,7 +54,6 @@ class App extends Component {
         this.setState({asideClass: asideClass, appClass: appClass})
     }
 
-
     componentWillMount() {
         this.removeAuthListener = app
             .auth()
@@ -69,8 +72,7 @@ class App extends Component {
                                 }
                             });
                         })
-                        .catch(error => {
-                        });
+                        .catch(error => {});
                 } else {
                     this.setState({auth: false});
                 }
@@ -84,7 +86,8 @@ class App extends Component {
 
     render() {
         return (
-            <div className={this
+            <div
+                className={this
                 .state
                 .appClass
                 .join(' ')}>
@@ -99,56 +102,61 @@ class App extends Component {
                             <h1>Learn Code</h1>
                         </Link>
                     </div>
-                    <div className="navLinks">
+                    <nav className="navLinks">
                         <Link className="navLink" to="/">Home</Link>
                         <Link className="navLink" to="/courses">Courses</Link>
                         <Link to="/about" className="navLink">About</Link>
-                    </div>
+                    </nav>
                     <div className="logout">
                         {!this.state.auth
                             ? <button className="ui teal icon small button">
-                                <Link to="/login">
-                                    <i aria-hidden="true" className="sign in icon"></i>
-                                </Link>
-                            </button>
+                                    <Link to="/login">
+                                        <i aria-hidden="true" className="sign in icon"></i>
+                                    </Link>
+                                </button>
                             : <button className="ui teal icon small button">
                                 <Link to="/logout">
                                     <i aria-hidden="true" className="sign out icon"></i>
                                 </Link>
                             </button>
-                        }
+}
                     </div>
                 </header>
                 <main className="main" onClick={this.hideAside}>
-                    <Switch>
-                        <Route path="/" exact render={() => (<Home navBarsHide={this.navBarsHide}/>)}/>
-                        <Route
-                            exact
-                            path="/courses"
-                            render={() => (<Courses navBarsHide={this.navBarsHide}/>)}/>
-                        <Route path="/about" render={() => (<About navBarsHide={this.navBarsHide}/>)}/>
-                        <Route
-                            path="/login"
-                            render={() => {
+                    <div className="content">
+                        <Switch>
+                            <Route path="/" exact render={() => (<Home navBarsHide={this.navBarsHide}/>)}/>
+                            <Route
+                                exact
+                                path="/courses"
+                                render={() => (<Courses navBarsHide={this.navBarsHide}/>)}/>
+                            <Route path="/about" render={() => (<About navBarsHide={this.navBarsHide}/>)}/>
+                            <Route
+                                path="/login"
+                                render={() => {
                                 this.login = true;
                                 return <Login navbarsHide={this.navBarsHide}/>;
                             }}/>
-                        <Route
-                            path="/logout"
-                            render={() => (<Logout navbarsHide={this.navBarsHide}/>)}/>
-                        <Route
-                            path="/courses/:id"
-                            children={(props) => {
+                            <Route
+                                path="/logout"
+                                render={() => (<Logout navbarsHide={this.navBarsHide}/>)}/>
+                            <Route
+                                path="/courses/:id"
+                                children={(props) => {
                                 return <Lessons id={props.match.params.id} auth={this.state.auth}/>;
                             }}/>
-                    </Switch>
+                        </Switch>
+                    </div>
                 </main>
-                <footer className="footer"></footer>
+                <footer className="footer">
+                    <p>Learn Code</p>
+                </footer>
                 <aside
                     className={this
-                        .state
-                        .asideClass
-                        .join(' ')} onClick={this.hideAside}>
+                    .state
+                    .asideClass
+                    .join(' ')}
+                    onClick={this.hideAside}>
                     <h5>LearnCode</h5>
                     <Link to="/">Home</Link>
                     <Link to="/courses">Courses</Link>
