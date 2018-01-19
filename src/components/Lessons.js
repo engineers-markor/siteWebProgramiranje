@@ -4,6 +4,8 @@ import Loading from './Loading';
 import {Link, Route} from 'react-router-dom';
 import Lesson from './Lesson';
 import {overview} from '../CourseJS';
+import './Lessons.css';
+
 
 export default class Lessons extends Component {
     constructor(props) {
@@ -27,6 +29,13 @@ export default class Lessons extends Component {
         });
     }
 
+    createTitle() {
+        return {__html: overview.title};
+    }
+
+    createContent(){
+        return{__html: overview.description};
+    }
     render() {
 
         if (this.state.loading) {
@@ -49,45 +58,16 @@ export default class Lessons extends Component {
                                 lessonId={props.match.params.lessonId}/>;
                         } else {
                             return (
-                                <div>
-                                    <h1>
-                                        {overview.title}
-                                    </h1>
-                                    {overview
-                                        .questions
-                                        .map((question, index) => {
-                                            return (
-                                                <div>
-                                                    <h4>
-                                                        {question}
-                                                    </h4>
-                                                    <p>
-                                                        {overview.answers[index]}
-                                                    </p>
-                                                </div>
-                                            );
-                                        })}
-                                    {overview
-                                        .links
-                                        .map((link, index) => {
-                                            return (
-                                                <div>
-                                                    <a
-                                                        target="blank"
-                                                        style={{
-                                                        color: `blue`
-                                                    }}
-                                                        href={link}>{overview.linksDescription[index]}</a>
-                                                </div>
-                                            );
-                                        })}
+                                <div className="lesson">
+                                    <h1 dangerouslySetInnerHTML={this.createTitle()}/>
+                                    <p dangerouslySetInnerHTML={this.createContent()}></p>
                                 </div>
                             );
                         }
                     }}/>
                 </div>
                 <div className="navLessons">
-                    <Link to={'/courses/' + this.props.id + "/" }>Overview</Link>
+                    <Link to={'/courses/' + this.props.id + "/"}>Overview</Link>
                     {this
                         .state
                         .lessons

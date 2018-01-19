@@ -8,11 +8,12 @@
   grid-template-rows: 60px 1fr 60px;
   grid-template-columns: 1fr;
   grid-template-areas: "header" "content" "footer";
+  background: url('./background.svg');
+  background-size: 100%;
 }
 
 .header {
   grid-area: header;
-  background: black;
   display: grid;
   grid-template-columns: 60px 1fr 60px;
   justify-items: center;
@@ -79,32 +80,18 @@
   left: 120px;
 }
 
-.loginPopup{
-  position: fixed;
-  left:calc(100vw/2 - 105px);
-  top:calc(100vh/2 - 211px);
-  display: none;
-  background: red;
-  border-radius: 5px;
-  z-index: 3;
-}
-
-.showLoginPopup{
-  display: block;
-}
-
 @media only screen and (min-width: 600px) {
   .header {
-    grid-template-columns: 1fr 50% 30% 60px;
-    grid-template-areas: ".. title navLinks logout"
+    grid-template-columns: 1fr 50% 30% 60px 1fr;
+    grid-template-areas: ".. title navLinks logout .."
   }
   .title {
     justify-self: flex-start;
   }
   .main {
-    grid-template-columns: 1fr 80% 60px;
+    grid-template-columns: 1fr 80% 60px 1fr;
     grid-template-rows: 18px 1fr 16px;
-    grid-template-areas: ".. .. .." ".. content .. " ".. .. ..";
+    grid-template-areas: ".. .. .. .." ".. content content .." ".. .. .. ..";
   }
   .content {
     grid-area: content;
