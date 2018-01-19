@@ -109,16 +109,16 @@ class App extends Component {
                     </nav>
                     <div className="logout">
                         {!this.state.auth
-                            ? <button className="ui teal icon small button">
-                                    <Link to="/login">
+                            ? <Link to="/login">
+                                    <button className="ui teal icon small button">
                                         <i aria-hidden="true" className="sign in icon"></i>
-                                    </Link>
-                                </button>
-                            : <button className="ui teal icon small button">
-                                <Link to="/logout">
-                                    <i aria-hidden="true" className="sign out icon"></i>
+                                    </button>
                                 </Link>
-                            </button>
+                            : <Link to="/logout">
+                                <button className="ui teal icon small button">
+                                    <i aria-hidden="true" className="sign out icon"></i>
+                                </button>
+                            </Link>
 }
                     </div>
                 </header>
