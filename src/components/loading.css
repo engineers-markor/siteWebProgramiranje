@@ -1,8 +1,6 @@
 .loading {
-    position: absolute;
-    top: 80px;
-    bottom: 0;
-    width: 100%;
+    align-self: center;
+    justify-self: center;
     display: flex;
 }
 

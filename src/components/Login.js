@@ -69,6 +69,7 @@ export default class Login extends Component {
         this.resetInput(e);
         this.setState({loginEmail: e.target.value})
     }
+
     setLoginPassword(e) {
         this.resetInput(e);
         this.setState({loginPassword: e.target.value})
@@ -86,14 +87,13 @@ export default class Login extends Component {
                     this.setState({redirect: true});
                 })
                 .catch(error => {
-                    if (error.code === "auth/user-not-found") 
+                    if (error.code === "auth/user-not-found")
                         this.setState({loading: false, email: '', password: '', errorMessage: "Incorect email."});
-                    if (error.code === "auth/wrong-password") 
+                    if (error.code === "auth/wrong-password")
                         this.setState({loading: false, email: '', password: '', errorMessage: 'Incorect password.'});
-                    console.log(error);
                 });
-        }else{
-            this.setState({errorMessage: 'Incorect email or password.'});            
+        } else {
+            this.setState({errorMessage: 'Incorect email or password.'});
         }
     }
 
@@ -189,9 +189,7 @@ export default class Login extends Component {
 
         return (
             <div className="form">
-                <div className="errorMessage">
-                    <h1>{this.state.errorMessage}</h1>
-                </div>
+
                 <form onSubmit={this.createAccount} className="singup">
                     <h5>Create new Account</h5>
                     <input
@@ -234,7 +232,9 @@ export default class Login extends Component {
                         onChange={this.setLoginPassword}/>
                     <input className="button" type="submit" value="Log In"/>
                 </form>
-
+                <div className="errorMessage">
+                    <h1>{this.state.errorMessage}</h1>
+                </div>
             </div>
         );
     }

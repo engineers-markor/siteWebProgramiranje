@@ -72,7 +72,8 @@ class App extends Component {
                                 }
                             });
                         })
-                        .catch(error => {});
+                        .catch(error => {
+                        });
                 } else {
                     this.setState({auth: false});
                 }
@@ -88,9 +89,9 @@ class App extends Component {
         return (
             <div
                 className={this
-                .state
-                .appClass
-                .join(' ')}>
+                    .state
+                    .appClass
+                    .join(' ')}>
                 <header className="header">
                     <div className="showAside" onClick={this.toggleAside}>
                         <button className="ui teal small icon button">
@@ -110,41 +111,39 @@ class App extends Component {
                     <div className="logout">
                         {!this.state.auth
                             ? <Link to="/login">
-                                    <button className="ui teal icon small button">
-                                        <i aria-hidden="true" className="sign in icon"></i>
-                                    </button>
-                                </Link>
+                                <button className="ui teal icon small button">
+                                    <i aria-hidden="true" className="sign in icon"></i>
+                                </button>
+                            </Link>
                             : <Link to="/logout">
                                 <button className="ui teal icon small button">
                                     <i aria-hidden="true" className="sign out icon"></i>
                                 </button>
                             </Link>
-}
+                        }
                     </div>
                 </header>
                 <main className="main" onClick={this.hideAside}>
                     <div className="content">
                         <Switch>
-                            <Route path="/" exact render={() => (<Home navBarsHide={this.navBarsHide}/>)}/>
+                            <Route path="/" exact render={() => (<Home/>)}/>
                             <Route
                                 exact
                                 path="/courses"
-                                render={() => (<Courses navBarsHide={this.navBarsHide}/>)}/>
-                            <Route path="/about" render={() => (<About navBarsHide={this.navBarsHide}/>)}/>
+                                render={() => (<Courses/>)}/>
+                            <Route path="/about" render={() => (<About/>)}/>
                             <Route
                                 path="/login"
-                                render={() => {
-                                this.login = true;
-                                return <Login navbarsHide={this.navBarsHide}/>;
-                            }}/>
+                                render={() => <Login/>
+                                }/>
                             <Route
                                 path="/logout"
-                                render={() => (<Logout navbarsHide={this.navBarsHide}/>)}/>
+                                render={() => (<Logout/>)}/>
                             <Route
                                 path="/courses/:id"
                                 children={(props) => {
-                                return <Lessons id={props.match.params.id} auth={this.state.auth}/>;
-                            }}/>
+                                    return <Lessons id={props.match.params.id} auth={this.state.auth}/>;
+                                }}/>
                         </Switch>
                     </div>
                 </main>
@@ -153,9 +152,9 @@ class App extends Component {
                 </footer>
                 <aside
                     className={this
-                    .state
-                    .asideClass
-                    .join(' ')}
+                        .state
+                        .asideClass
+                        .join(' ')}
                     onClick={this.hideAside}>
                     <h5>LearnCode</h5>
                     <Link to="/">Home</Link>

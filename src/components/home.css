@@ -3,7 +3,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    grid-gap: 92px;
+    grid-gap: 64px;
     grid-template-areas: "main main leftBar" "bottomBar bottomBar bottomBar";
 }
 
@@ -42,26 +42,47 @@
     background-color: rgba(0, 201, 255, 0.4);
     color : white;
     z-index: 2;
-    opacity: 0.5;
+    opacity: 0.9;
     text-align: center;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    grid-gap: 30px;
 
 }
 .home-main-content:hover{
     opacity: 1;
 }
+.home-main-content a{
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 12px 60px 12px 60px;
+    font-weight:900;
+    letter-spacing:1px;
+    background: rgba(255, 255, 255, 0.8);
+}
+.home-main-content a:hover{
+    background: rgba(255, 255, 255, 1);
+}
 
 .leftBar {
     grid-area: leftBar;
-    background: red;
     display: grid;
+    grid-gap: 32px;
 }
 
 .leftBar-item {
+    padding: 24px;
+    background: aqua;
+    border-radius: 10px;
 
 }
 
 .bottomBar {
-    background: yellow;
+    border-radius: 10px;
+    background: aquamarine;
     grid-area: bottomBar;
 }
 

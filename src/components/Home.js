@@ -1,4 +1,5 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import './home.css';
 import img1 from '../img/background1.jpg';
 import img2 from '../img/background2.jpg';
@@ -55,20 +56,27 @@ export default class Home extends Component {
                         </div>
                     )
                 })}
-                {/*<div className={this.state.showImg[0] ? 'home-main-img show' : 'home-main-img hide'}>*/}
-                {/*<img src={img2} alt=''/>*/}
-                {/*</div>*/}
-                {/*<div className={this.state.showImg[1] ? 'home-main-img show' : 'home-main-img hide'}>*/}
-                {/*<img src={img1} alt=''/>*/}
-                {/*</div>*/}
+
                 <div className="home-main-content">
-                    <h1>title</h1>
+                    <h3>Learn code</h3>
+                    <h1>Postanite JavaScript Nindza </h1>
+                    <Link to="/courses">
+
+                            LEARN CODE NOW
+
+                    </Link>
                 </div>
 
 
-                <div className="leftBar">
+                <section className="leftBar">
+                    <article className="leftBar-item">
+                        <h1>article 1</h1>
+                    </article>
+                    <article className="leftBar-item">
+                        <h1>article 2</h1>
+                    </article>
 
-                </div>
+                </section>
                 <div className="bottomBar">
 
                 </div>
