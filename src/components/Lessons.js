@@ -33,11 +33,11 @@ export default class Lessons extends Component {
         return {__html: overview.title};
     }
 
-    createContent(){
-        return{__html: overview.description};
+    createContent() {
+        return {__html: overview.description};
     }
-    render() {
 
+    render() {
         if (this.state.loading) {
             return <Loading/>
         }
@@ -48,33 +48,35 @@ export default class Lessons extends Component {
 
         return (
             <div className="flexLesson">
-                <div className="contentLessons">
-                    <Route
-                        path="/courses/:courseId/:lessonId"
-                        children={(props) => {
-                        if (props.match) {
-                            return <Lesson
-                                courseId={props.match.params.courseId}
-                                lessonId={props.match.params.lessonId}/>;
-                        } else {
-                            return (
-                                <div className="lesson">
-                                    <h1 dangerouslySetInnerHTML={this.createTitle()}/>
-                                    <p dangerouslySetInnerHTML={this.createContent()}></p>
-                                </div>
-                            );
-                        }
-                    }}/>
-                </div>
+
                 <div className="navLessons">
                     <Link to={'/courses/' + this.props.id + "/"}>Overview</Link>
                     {this
                         .state
                         .lessons
                         .map((lesson) => {
-                            return <Link key={lesson} to={'/courses/' + this.props.id + "/" + lesson}>{this.state.course.lessons[lesson].name}</Link>
+                            return <Link key={lesson}
+                                         to={'/courses/' + this.props.id + "/" + lesson}>{this.state.course.lessons[lesson].title}</Link>
                         })}
                 </div>
+                <div className="contentLessons">
+                    <Route
+                        path="/courses/:courseId/:lessonId"
+                        children={(props) => {
+                            if (props.match) {
+                                console.log(props.match);
+                                return <Lesson lesson={this.state.course.lessons[props.match.params.lessonId]}/>;
+                            } else {
+                                return (
+                                    <div className="lesson">
+                                        <h1 dangerouslySetInnerHTML={this.createTitle()}/>
+                                        <p dangerouslySetInnerHTML={this.createContent()}></p>
+                                    </div>
+                                );
+                            }
+                        }}/>
+                </div>
+
             </div>
         )
     }
