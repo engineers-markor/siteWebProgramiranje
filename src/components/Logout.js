@@ -20,7 +20,7 @@ export default class LogOut extends Component {
 
     render() {
         if (this.state.redirect) {
-            return <Redirect to='/' />
+            return <Redirect to='/login' />
         }
         return (
             <div>
