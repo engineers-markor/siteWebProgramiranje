@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {getCourses} from '../../base';
-import ItemCourse from '../ItemCourse';
+import ItemCourse from '../common/ItemCourse';
 import './courseList.css';
 
 export default class CourseList extends Component {

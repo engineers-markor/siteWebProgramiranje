@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import './courses/courseList.css';
+import '../courses/courseList.css';
 
 const ItemCourse = ({to, name, logo}) => (
     <Link className="courseItem" to={to}>
