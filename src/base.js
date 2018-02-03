@@ -11,7 +11,8 @@ const getCourses = new Promise((resolve, reject) => {
         .then(data => {
             resolve(data);
         })
-        .catch(error => {});;
+        .catch(error => {
+        });
 });
 
 const getCoursesLessons = (id) => {
