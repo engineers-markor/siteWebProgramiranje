@@ -61,9 +61,7 @@ export default class Home extends Component {
                     <h3>Learn code</h3>
                     <h1>Postanite JavaScript Nindza </h1>
                     <Link to="/courses">
-
-                            LEARN CODE NOW
-
+                        LEARN CODE NOW
                     </Link>
                 </div>
 

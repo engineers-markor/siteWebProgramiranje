@@ -5,7 +5,7 @@ import ItemCourse from './ItemCourse';
 export default class Courses extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             courses: []
         }
@@ -14,7 +14,7 @@ export default class Courses extends Component {
     componentWillMount() {
         getCourses.then(courses => {
             this.setState({courses: courses})
-        }).catch(error =>{
+        }).catch(error => {
             console.log(error);
         });
     }
