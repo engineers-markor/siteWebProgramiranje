@@ -26,7 +26,11 @@ export default class CourseList extends Component {
                 <h1>Courses</h1>
                 {coursesIds.map(id => {
                     const to = "/courses/" + id;
-                    return <ItemCourse key={id} name={this.state.courseList[id].name} to={to}/>
+                    return <ItemCourse
+                        key={id}
+                        logo={this.state.courseList[id].logo}
+                        name={this.state.courseList[id].name}
+                        to={to}/>
                 })}
             </div>
         )
