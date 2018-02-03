@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {getCoursesLessons} from '../base';
 import Loading from './Loading';
-import {Link, Route} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Lesson from './Lesson';
 import {overview} from '../CourseJS';
 import './Lessons.css';

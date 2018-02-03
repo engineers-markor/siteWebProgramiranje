@@ -1,17 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import './courses/courseList.css';
 
 const ItemCourse = ({to, name, logo}) => (
-    <Link to={to}>
-        <div
-            style={{
-            width: `100%`,
-            margin: `20px 0`,
-            height: `100px`,
-            background: `aqua`
-        }}>
+    <Link className="courseItem" to={to}>
+        <img src={logo} style={{width: `150px`, height: `150px`, borderBottomLeftRadius:`10px`,borderTopLeftRadius:`10px`}} alt="logo"/>
+        <div>
             <h1>{name}</h1>
-            <img src={logo}/>
         </div>
     </Link>
 );

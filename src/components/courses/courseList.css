@@ -1,0 +1,18 @@
+.courseList {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns:  1fr;
+    grid-gap: 50px;
+
+}
+
+.courseItem {
+    background: aquamarine;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    grid-gap: 20px;
+
+}

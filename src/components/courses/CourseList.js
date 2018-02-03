@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {getCourses} from '../../base';
 import ItemCourse from '../ItemCourse';
+import './courseList.css';
 
 export default class CourseList extends Component {
 
@@ -24,14 +25,15 @@ export default class CourseList extends Component {
         return (
             <div className="flexCourses">
                 <h1>Courses</h1>
-                {coursesIds.map(id => {
-                    const to = "/courses/" + id;
-                    return <ItemCourse
-                        key={id}
-                        logo={this.state.courseList[id].logo}
-                        name={this.state.courseList[id].name}
-                        to={to}/>
-                })}
+                <div className="courseList">
+                    {coursesIds.map(id => {
+                        return <ItemCourse
+                            key={id}
+                            logo={this.state.courseList[id].logo}
+                            name={this.state.courseList[id].name}
+                            to={`/courses/${id}`}/>
+                    })}
+                </div>
             </div>
         )
     }
