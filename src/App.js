@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import './App.css';
-import {Link, Route, Switch} from 'react-router-dom';
+import {Link, Route} from 'react-router-dom';
 import {app, base} from './base';
-import Home from './components/Home';
-import Courses from './components/Courses';
-import About from './components/About';
-import Login from './components/Login';
-import Logout from './components/Logout';
+import Home from './components/home/Home';
+import Courses from './components/courses/CourseList';
+import About from './components/about/About';
+import Login from './components/auth/Login';
+import Logout from './components/auth/Logout';
 import Lessons from './components/Lessons';
+import Footer from './components/common/Footer';
 
 class App extends Component {
 
@@ -37,8 +38,8 @@ class App extends Component {
         if (asideClass.length > 1) {
             asideClass.splice(1, 1);
             appClass.splice(1, 1);
+            this.setState({asideClass: asideClass, appClass: appClass})
         }
-        this.setState({asideClass: asideClass, appClass: appClass})
     }
 
     toggleAside() {
@@ -125,31 +126,19 @@ class App extends Component {
                 </header>
                 <main className="main" onClick={this.hideAside}>
                     <div className="content">
-                        <Switch>
-                            <Route path="/" exact render={() => (<Home/>)}/>
-                            <Route
-                                exact
-                                path="/courses"
-                                render={() => (<Courses/>)}/>
-                            <Route path="/about" render={() => (<About/>)}/>
-                            <Route
-                                path="/login"
-                                render={() => <Login/>
-                                }/>
-                            <Route
-                                path="/logout"
-                                render={() => (<Logout/>)}/>
-                            <Route
-                                path="/courses/:id"
-                                children={(props) => {
-                                    return <Lessons id={props.match.params.id} auth={this.state.auth}/>;
-                                }}/>
-                        </Switch>
+                        <Route path="/" exact component={Home}/>
+                        <Route exact path="/courses" component={Courses}/>
+                        <Route path="/about" component={About}/>
+                        <Route path="/login" component={Login}/>
+                        <Route path="/logout" component={Logout}/>
+                        <Route
+                            path="/courses/:id"
+                            render={({match}) => (<Lessons courseId={match.params.id} auth={this.state.auth}/>)}
+                        />
                     </div>
                 </main>
-                <footer className="footer">
-                    <p>Learn Code</p>
-                </footer>
+                <Footer cl="footer"/>
+
                 <aside
                     className={this
                         .state
