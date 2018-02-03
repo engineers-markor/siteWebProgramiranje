@@ -18,7 +18,8 @@ export default class Lessons extends Component {
     }
 
     componentDidMount() {
-        getCoursesLessons(this.props.id).then(data => {
+        console.log(this.props);
+        getCoursesLessons(this.props.courseId).then(data => {
             this.setState({
                 course: data,
                 loading: false,
@@ -38,44 +39,23 @@ export default class Lessons extends Component {
     }
 
     render() {
+        console.log(this.state);
         if (this.state.loading) {
             return <Loading/>
         }
 
         if (!this.props.auth) {
-            return <h1>Molim vas kako biste poceli kurs prvo se besplatno ulogujte.</h1>
+            return (
+                <div>
+                    <h1>Molim vas kako biste poceli kurs prvo se besplatno ulogujte.</h1>
+                    <Link to="/login">Login</Link>
+                </div>
+            );
         }
 
         return (
             <div className="flexLesson">
 
-                <div className="navLessons">
-                    <Link to={'/courses/' + this.props.id + "/"}>Overview</Link>
-                    {this
-                        .state
-                        .lessons
-                        .map((lesson) => {
-                            return <Link key={lesson}
-                                         to={'/courses/' + this.props.id + "/" + lesson}>{this.state.course.lessons[lesson].title}</Link>
-                        })}
-                </div>
-                <div className="contentLessons">
-                    <Route
-                        path="/courses/:courseId/:lessonId"
-                        children={(props) => {
-                            if (props.match) {
-                                console.log(props.match);
-                                return <Lesson lesson={this.state.course.lessons[props.match.params.lessonId]}/>;
-                            } else {
-                                return (
-                                    <div className="lesson">
-                                        <h1 dangerouslySetInnerHTML={this.createTitle()}/>
-                                        <p dangerouslySetInnerHTML={this.createContent()}></p>
-                                    </div>
-                                );
-                            }
-                        }}/>
-                </div>
 
             </div>
         )
