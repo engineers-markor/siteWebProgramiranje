@@ -138,7 +138,9 @@ class App extends Component {
                 </header>
                 <main className="main" onClick={this.hideAside}>
                     <div className="content">
-                        <Route path="/" exact component={Home}/>
+                        <Route path="/" exact render={() => {
+                            return <Home user={this.state.user}/>;
+                        }}/>
                         <Route exact path="/courses" component={Courses}/>
                         <Route path="/about" component={About}/>
                         <Route path="/login" component={Login}/>

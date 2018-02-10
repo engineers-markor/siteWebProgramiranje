@@ -4,6 +4,7 @@ import './home.css';
 import img1 from '../../img/background1.jpg';
 import img2 from '../../img/background2.jpg';
 import img3 from '../../img/background3.jpeg';
+import UserProfile from "../userProfile/UserProfile";
 
 const images = [img1, img2, img3, img2];
 
@@ -65,10 +66,9 @@ export default class Home extends Component {
                     </Link>
                 </div>
 
-
                 <section className="leftBar">
                     <article className="leftBar-item">
-                        <h1>article 1</h1>
+                        <UserProfile user={this.props.user}/>
                     </article>
                     <article className="leftBar-item">
                         <h1>article 2</h1>

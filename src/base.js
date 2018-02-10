@@ -17,7 +17,6 @@ const getCourses = new Promise((resolve, reject) => {
         });
 });
 
-
 const getCoursesLessons = (id) => {
     return new Promise((resolve, reject) => {
         base
@@ -50,7 +49,6 @@ const authListener = () => {
 const getIsAuth = () => {
     return isAuth;
 };
-
 //---------------------------------------
 const getUserCourses = () => {
     console.log(userId);
@@ -66,12 +64,12 @@ const getUserCourses = () => {
 };
 
 const addCourseToUser = (courseId, listLessons) => {
-        base.post(`users/${userId}/courses/${courseId}`, {
-            data: {
-                listLessons,
-                currentLesson: 0
-            }
-        });
+    base.post(`users/${userId}/courses/${courseId}`, {
+        data: {
+            listLessons,
+            currentLesson: 0
+        }
+    });
 };
 
 export {
