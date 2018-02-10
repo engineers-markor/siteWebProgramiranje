@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
-import {Link, Route} from 'react-router-dom';
-import {app, base} from './base';
+import {Link, Route, Redirect} from 'react-router-dom';
+import {app, base, userListener} from './base';
 import Home from './components/home/Home';
 import Courses from './components/courses/CourseList';
 import About from './components/about/About';
@@ -69,7 +69,8 @@ class App extends Component {
                                     uid: user.uid,
                                     username: data.username,
                                     photoUrl: data.photoUrl,
-                                    email: data.email
+                                    email: data.email,
+                                    courses: data.courses,
                                 }
                             });
                         })
@@ -82,7 +83,7 @@ class App extends Component {
     }
 
     componentWillUnmount() {
-        base.removeBinding(this.messagesRef);
+        // base.removeBinding(this.messagesRef);
         this.removeAuthListener();
     }
 
@@ -131,10 +132,13 @@ class App extends Component {
                         <Route path="/about" component={About}/>
                         <Route path="/login" component={Login}/>
                         <Route path="/logout" component={Logout}/>
-                        <Route
-                            path="/courses/:id"
-                            render={({match}) => (<Lessons courseId={match.params.id} auth={this.state.auth}/>)}
-                        />
+                        {/*<Route*/}
+                            {/*path="/courses/:id"*/}
+                            {/*render={({match}) => (*/}
+                                {/*<Lessons courseId={match.params.id} auth={this.state.auth} user={this.state.user}/>)}*/}
+                        {/*/>*/}
+
+                        <PrivateRoute path="/courses/:id" component={Lessons}/>
                     </div>
                 </main>
                 <Footer cl="footer"/>
@@ -154,5 +158,19 @@ class App extends Component {
         );
     }
 }
+
+const PrivateRoute = ({component: Component, ...rest}) => (
+    <Route {...rest} render={props => (
+        app.auth().currentUser ? (
+            <Component {...props}/>
+        ) : (
+            <Redirect to={{
+                pathname: '/login',
+                state: {from: props.location}
+            }}/>
+        )
+    )}/>
+);
+
 
 export default App;

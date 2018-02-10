@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {getCoursesLessons} from '../base';
+import {getCoursesLessons, getUserCourses, addCourseToUser} from '../base';
 import Loading from './Loading';
 import {Link} from 'react-router-dom';
 import Lesson from './Lesson';
@@ -12,22 +12,32 @@ export default class Lessons extends Component {
         super(props);
         this.state = {
             course: {},
-            loading: true,
+            loading: false,
             lessons: []
         }
     }
 
     componentDidMount() {
         console.log(this.props);
-        getCoursesLessons(this.props.courseId).then(data => {
-            this.setState({
-                course: data,
-                loading: false,
-                lessons: Object.keys(data.lessons)
-            });
-        }).catch(error => {
-            this.setState({loading: false});
-        });
+        // if (this.props.user.uid) {
+        //     getUserCourses(this.props.user.uid).then(userCourses => {
+        //         console.log(userCourses);
+        //         if (userCourses[this.props.courseId]) {
+        //
+        //         } else {
+        //             addCourseToUser(this.props.user.uid, this.props.courseId);
+        //         }
+        //     });
+        //     getCoursesLessons(this.props.courseId).then(data => {
+        //         this.setState({
+        //             course: data,
+        //             loading: false,
+        //             lessons: Object.keys(data.lessons)
+        //         });
+        //     }).catch(error => {
+        //         this.setState({loading: false});
+        //     });
+        // }
     }
 
     createTitle() {
@@ -39,18 +49,8 @@ export default class Lessons extends Component {
     }
 
     render() {
-        console.log(this.state);
         if (this.state.loading) {
             return <Loading/>
-        }
-
-        if (!this.props.auth) {
-            return (
-                <div>
-                    <h1>Molim vas kako biste poceli kurs prvo se besplatno ulogujte.</h1>
-                    <Link to="/login">Login</Link>
-                </div>
-            );
         }
 
         return (
