@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import './App.css';
 import {Link, Route, Redirect} from 'react-router-dom';
-import {app, base, userListener} from './base';
+import {app, base, authListener, getIsAuth} from './base';
 import Home from './components/home/Home';
 import Courses from './components/courses/CourseList';
 import About from './components/about/About';
 import Login from './components/auth/Login';
 import Logout from './components/auth/Logout';
-import Lessons from './components/Lessons';
+import Lessons from './components/lessons/Lessons';
+import Lesson from './components/lesson/Lesson';
 import Footer from './components/common/Footer';
+import Loading from "./components/Loading";
 
 class App extends Component {
 
@@ -20,7 +22,8 @@ class App extends Component {
             appClass: ['app'],
             user: {},
             auth: false,
-            coursePath: ''
+            coursePath: '',
+            loading: false,
         };
 
         this.hideAside = this
@@ -56,6 +59,9 @@ class App extends Component {
     }
 
     componentWillMount() {
+        this.setState({
+            loading: true
+        });
         this.removeAuthListener = app
             .auth()
             .onAuthStateChanged(user => {
@@ -71,23 +77,28 @@ class App extends Component {
                                     photoUrl: data.photoUrl,
                                     email: data.email,
                                     courses: data.courses,
-                                }
+                                },
+                                loading: false,
                             });
                         })
                         .catch(error => {
                         });
                 } else {
-                    this.setState({auth: false});
+                    this.setState({auth: false, loading: false});
                 }
-            })
+            });
+
+        authListener();
+
     }
 
     componentWillUnmount() {
-        // base.removeBinding(this.messagesRef);
         this.removeAuthListener();
     }
 
     render() {
+        if (this.state.loading) return <Loading/>
+
         return (
             <div
                 className={this
@@ -114,12 +125,12 @@ class App extends Component {
                         {!this.state.auth
                             ? <Link to="/login">
                                 <button className="ui teal icon small button">
-                                    <i aria-hidden="true" className="sign in icon"></i>
+                                    <i aria-hidden="true" className="sign in icon"/>
                                 </button>
                             </Link>
                             : <Link to="/logout">
                                 <button className="ui teal icon small button">
-                                    <i aria-hidden="true" className="sign out icon"></i>
+                                    <i aria-hidden="true" className="sign out icon"/>
                                 </button>
                             </Link>
                         }
@@ -132,13 +143,9 @@ class App extends Component {
                         <Route path="/about" component={About}/>
                         <Route path="/login" component={Login}/>
                         <Route path="/logout" component={Logout}/>
-                        {/*<Route*/}
-                            {/*path="/courses/:id"*/}
-                            {/*render={({match}) => (*/}
-                                {/*<Lessons courseId={match.params.id} auth={this.state.auth} user={this.state.user}/>)}*/}
-                        {/*/>*/}
 
-                        <PrivateRoute path="/courses/:id" component={Lessons}/>
+                        <PrivateRoute exact path="/courses/:id" component={Lessons}/>
+                        <PrivateRoute exact path="/courses/:courseId/:lessonId" component={Lesson}/>
                     </div>
                 </main>
                 <Footer cl="footer"/>
@@ -161,7 +168,7 @@ class App extends Component {
 
 const PrivateRoute = ({component: Component, ...rest}) => (
     <Route {...rest} render={props => (
-        app.auth().currentUser ? (
+        getIsAuth() ? (
             <Component {...props}/>
         ) : (
             <Redirect to={{

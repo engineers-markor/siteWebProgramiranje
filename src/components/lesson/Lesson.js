@@ -2,11 +2,9 @@ import React, {Component} from 'react'
 
 export default class Lesson extends Component {
     render() {
-        const lesson = this.props.lesson;
-        console.log(lesson);
         return (
             <div>
-
+                <h1>Lesson :</h1>
             </div>
         )
     }
