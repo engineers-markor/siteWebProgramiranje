@@ -10,7 +10,7 @@ import Logout from './components/auth/Logout';
 import Lessons from './components/lessons/Lessons';
 import Lesson from './components/lesson/Lesson';
 import Footer from './components/common/Footer';
-import Loading from "./components/Loading";
+import Loading from "./components/common/loading/Loading";
 
 class App extends Component {
 

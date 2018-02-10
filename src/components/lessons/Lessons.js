@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {getCoursesLessons, getUserCourses, addCourseToUser} from '../../base';
-import '../Lessons.css';
+import './Lessons.css';
 import ItemLesson from '../common/ItemLesson';
 
 export default class Lessons extends Component {

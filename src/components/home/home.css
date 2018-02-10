@@ -37,6 +37,7 @@
 }
 
 .home-main-content {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
     grid-area: main;
     background-color: rgba(0, 201, 255, 0.4);
@@ -77,10 +78,12 @@
     padding: 24px;
     background: aqua;
     border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
 
 .bottomBar {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
     background: aquamarine;
     grid-area: bottomBar;
