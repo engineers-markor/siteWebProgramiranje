@@ -50,12 +50,23 @@ const getIsAuth = () => {
     return isAuth;
 };
 //---------------------------------------
-const getUserCourses = () => {
-    console.log(userId);
+const getAllUserCourses = () => {
     return new Promise((resolve, reject) => {
         base.fetch(`users/${userId}`, {context: this}).then(user => {
             if (user.courses) {
                 resolve(user.courses);
+            } else {
+                resolve({})
+            }
+        }).catch(error => reject(error))
+    });
+};
+
+const getUserCourseById = (courseId) => {
+    return new Promise((resolve, reject) => {
+        base.fetch(`users/${userId}/courses/${courseId}`, {context: this}).then(course => {
+            if (course) {
+                resolve(course);
             } else {
                 resolve({})
             }
@@ -72,6 +83,18 @@ const addCourseToUser = (courseId, listLessons) => {
     });
 };
 
+const getLessonById = (lessonId)=>{
+    return new Promise((resolve, reject) => {
+        base.fetch(`lessons/${lessonId}`, {context: this}).then(lesson => {
+            if (lesson) {
+                resolve(lesson);
+            } else {
+                resolve({})
+            }
+        }).catch(error => reject(error))
+    });
+};
+
 export {
     base,
     app,
@@ -79,6 +102,8 @@ export {
     getCoursesLessons,
     authListener,
     getIsAuth,
-    getUserCourses,
-    addCourseToUser
+    getAllUserCourses,
+    addCourseToUser,
+    getUserCourseById,
+    getLessonById
 }

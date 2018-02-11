@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {getCoursesLessons, getUserCourses, addCourseToUser} from '../../base';
+import {getCoursesLessons, getAllUserCourses, addCourseToUser} from '../../base';
 import './Lessons.css';
 import ItemLesson from '../common/ItemLesson';
 
@@ -14,14 +14,14 @@ export default class Lessons extends Component {
 
     componentDidMount() {
 
-        getUserCourses().then(courses => {
+        getAllUserCourses().then(courses => {
             if (courses[this.courseId]) {
-                console.log("already have course");
+                // console.log("already have course");
                 this.setState({
                     lessons: courses[this.courseId].listLessons
                 })
             } else {
-                console.log("first time listen course");
+                // console.log("first time listen course");
                 getCoursesLessons(this.courseId).then(lessons => {
                     addCourseToUser(this.courseId, lessons);
                     this.setState({
