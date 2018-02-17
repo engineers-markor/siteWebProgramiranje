@@ -1,49 +1,50 @@
 import React, {Component} from 'react'
-import {getUserCourseById, getLessonById} from '../../base';
+import {getLessonById} from '../../base';
 import './lesson.css';
-import {Link} from 'react-router-dom';
+import TextElement from '../elements/TextElement';
+import {getLessonIdFromPathName} from '../../util/util';
+
 
 export default class Lesson extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            course: {},
             lesson: {},
+            lessonId: ''
         }
-
     }
 
-    componentDidMount() {
-        const {courseId, lessonId} = this.props.match.params;
-
-        getUserCourseById(courseId).then(course => {
-            this.setState({
-                course
-            })
-        });
-        getLessonById(lessonId).then(lesson => {
+    componentWillMount() {
+        getLessonById(this.props.match.params.lessonId).then(lesson => {
             this.setState({
                 lesson
             })
-        })
+        });
+
+        this.unlisten = this.props.history.listen((location, action) => {
+            const lessonId = getLessonIdFromPathName(location.pathname);
+            getLessonById(lessonId).then(lesson => {
+                this.setState({
+                    lesson,
+                    lessonId
+                })
+            })
+        });
+    }
+
+    componentWillUnmount() {
+        this.unlisten();
     }
 
     render() {
-        const {course} = this.state;
-
+        const {lesson} = this.state;
+        console.log(lesson);
         return (
-            <div className="lessonWrapper">
-                <div className="lessonsList">
-                    {course.listLessons ? course.listLessons.map(lesson => {
-                        return <Link className={lesson.id === this.props.match.params.lessonId ? "active" : "notActive"}
-                                     key={lesson.id}
-                                     to={`/courses/${this.props.match.params.courseId}/${lesson.id}`}
-                        >{lesson.name}</Link>
-                    }) : null}
-                </div>
+            <div>
+                <h2>{lesson.name}</h2>
 
-
+                {lesson.el1 && <TextElement title={lesson.el1.title} value={lesson.el1.value}/>}
             </div>
         )
     }

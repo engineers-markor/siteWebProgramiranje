@@ -31,9 +31,10 @@ export default class CourseList extends Component {
                             key={id}
                             logo={this.state.courseList[id].logo}
                             name={this.state.courseList[id].name}
-                            to={`/courses/${id}`}/>
+                            to={`course/${id}`}/>
                     })}
                 </div>
+
             </div>
         )
     }

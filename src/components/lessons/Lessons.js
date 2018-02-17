@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {getCoursesLessons, getAllUserCourses, addCourseToUser} from '../../base';
 import './Lessons.css';
-import ItemLesson from '../common/ItemLesson';
+import {Link, Route} from "react-router-dom";
+import Lesson from "../lesson/Lesson";
+import {getLessonIdFromPathName} from "../../util/util";
 
 export default class Lessons extends Component {
     constructor(props) {
@@ -9,7 +11,7 @@ export default class Lessons extends Component {
         this.state = {
             lessons: []
         };
-        this.courseId = this.props.match.params.id;
+        this.courseId = this.props.match.params.courseId;
     }
 
     componentDidMount() {
@@ -33,14 +35,22 @@ export default class Lessons extends Component {
     }
 
     render() {
-        const {lessons} = this.state;
+        const course = this.state.lessons;
+        const locationLessonId = getLessonIdFromPathName(this.props.location.pathname);
         return (
-            <div className="flexLesson">
-                <h1>Lessons</h1>
-                {lessons.map(lesson => {
-                    return <ItemLesson key={lesson.id} to={`/courses/${this.courseId}/${lesson.id}`}
-                                       name={lesson.name}/>
-                })}
+            <div className="lessonWrapper">
+                <div className="lessonsList">
+                    {course ? course.map(lesson => {
+                        return <Link className={lesson.id === locationLessonId ? "active" : "notActive"}
+                                     key={lesson.id}
+                                     to={`/course/${this.courseId}/${lesson.id}`}
+                        >{lesson.name}</Link>
+                    }) : null}
+                </div>
+                <div className="lessonBody">
+                    <Route path={`/course/${this.courseId}/:lessonId`} component={Lesson}/>
+                    <Route exact path={`/course/${this.courseId}`} render={() => (<h3>Chose lesson</h3>)}/>
+                </div>
             </div>
         )
     }

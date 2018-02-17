@@ -2,12 +2,26 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 30px 1fr;
+    grid-gap: 15px;
     grid-template-areas: "lessonList" "lesson";
 }
 
 .lessonsList {
     grid-area: lessonList;
     display: flex;
+
+}
+
+.lessonBody{
+    background: whitesmoke;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    grid-area:lesson;
+    display:flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
 

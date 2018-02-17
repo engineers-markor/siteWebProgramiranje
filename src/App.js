@@ -8,7 +8,6 @@ import About from './components/about/About';
 import Login from './components/auth/Login';
 import Logout from './components/auth/Logout';
 import Lessons from './components/lessons/Lessons';
-import Lesson from './components/lesson/Lesson';
 import Footer from './components/common/Footer';
 import Loading from "./components/common/loading/Loading";
 
@@ -20,7 +19,7 @@ class App extends Component {
         this.state = {
             asideClass: ['aside'],
             appClass: ['app'],
-            user: {},
+            user: null,
             auth: false,
             coursePath: '',
             loading: false,
@@ -123,10 +122,8 @@ class App extends Component {
                     </nav>
                     <div className="logout">
                         {!this.state.auth
-                            ? <Link to="/login">
-                                <button className="ui teal icon small button">
-                                    <i aria-hidden="true" className="sign in icon"/>
-                                </button>
+                            ? <Link className='shadow' to="/login">
+                                Log In
                             </Link>
                             : <Link to="/logout">
                                 <button className="ui teal icon small button">
@@ -145,9 +142,7 @@ class App extends Component {
                         <Route path="/about" component={About}/>
                         <Route path="/login" component={Login}/>
                         <Route path="/logout" component={Logout}/>
-
-                        <PrivateRoute exact path="/courses/:id" component={Lessons}/>
-                        <PrivateRoute exact path="/courses/:courseId/:lessonId" component={Lesson}/>
+                        <PrivateRoute path="/course/:courseId" component={Lessons}/>
                     </div>
                 </main>
                 <Footer cl="footer"/>
