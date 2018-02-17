@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {getCoursesLessons, getAllUserCourses, addCourseToUser} from '../../base';
+import {getCoursesLessons, getAllUserCourses, addCourseToUser, getLessonById} from '../../base';
 import './Lessons.css';
 import {Link, Route} from "react-router-dom";
 import Lesson from "../lesson/Lesson";
-import {getLessonIdFromPathName} from "../../util/util";
+import {getLessonIdFromPathName, objectToArray} from "../../util/util";
+import TextElement from "../elements/TextElement";
 
 export default class Lessons extends Component {
     constructor(props) {
@@ -15,6 +16,13 @@ export default class Lessons extends Component {
     }
 
     componentDidMount() {
+
+        getLessonById(this.courseId).then(overview => {
+
+            this.setState({
+                overview
+            })
+        });
 
         getAllUserCourses().then(courses => {
             if (courses[this.courseId]) {
@@ -49,7 +57,26 @@ export default class Lessons extends Component {
                 </div>
                 <div className="lessonBody">
                     <Route path={`/course/${this.courseId}/:lessonId`} component={Lesson}/>
-                    <Route exact path={`/course/${this.courseId}`} render={() => (<h3>Chose lesson</h3>)}/>
+                    <Route exact path={`/course/${this.courseId}`} render={() => {
+                        if (this.state.overview) {
+                            const {overview} = this.state;
+                            const elements = objectToArray(overview);
+                            console.log(elements);
+                            return (<div style={{padding: `16px`}}>
+                                {elements.map((element, key) => {
+                                    switch (element.type) {
+                                        case "title":
+                                            return <h1 key={key}>{element.value}</h1>
+                                        case "text":
+                                            return <TextElement key={key} title={element.title} value={element.value}/>
+                                    }
+                                })}
+                            </div>)
+                        } else {
+                            return <div>Loading...</div>
+                        }
+
+                    }}/>
                 </div>
             </div>
         )
