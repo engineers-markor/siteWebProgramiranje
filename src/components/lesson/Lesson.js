@@ -21,29 +21,25 @@ export default class Lesson extends Component {
                 lesson
             })
         });
+    }
 
-        this.unlisten = this.props.history.listen((location, action) => {
-            const lessonId = getLessonIdFromPathName(location.pathname);
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.match.params.lessonId !== this.props.match.params.lessonId) {
+            const lessonId = getLessonIdFromPathName(nextProps.match.params.lessonId);
             getLessonById(lessonId).then(lesson => {
                 this.setState({
                     lesson,
                     lessonId
                 })
             })
-        });
-    }
-
-    componentWillUnmount() {
-        this.unlisten();
+        }
     }
 
     render() {
         const {lesson} = this.state;
-        console.log(lesson);
         return (
             <div>
                 <h2>{lesson.name}</h2>
-
                 {lesson.el1 && <TextElement title={lesson.el1.title} value={lesson.el1.value}/>}
             </div>
         )

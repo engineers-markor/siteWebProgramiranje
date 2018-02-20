@@ -16,9 +16,7 @@ export default class Lessons extends Component {
     }
 
     componentDidMount() {
-
         getLessonById(this.courseId).then(overview => {
-
             this.setState({
                 overview
             })
@@ -26,12 +24,10 @@ export default class Lessons extends Component {
 
         getAllUserCourses().then(courses => {
             if (courses[this.courseId]) {
-                // console.log("already have course");
                 this.setState({
                     lessons: courses[this.courseId].listLessons
                 })
             } else {
-                // console.log("first time listen course");
                 getCoursesLessons(this.courseId).then(lessons => {
                     addCourseToUser(this.courseId, lessons);
                     this.setState({
@@ -61,21 +57,23 @@ export default class Lessons extends Component {
                         if (this.state.overview) {
                             const {overview} = this.state;
                             const elements = objectToArray(overview);
-                            console.log(elements);
-                            return (<div style={{padding: `16px`}}>
+                            return (<div>
                                 {elements.map((element, key) => {
                                     switch (element.type) {
                                         case "title":
-                                            return <h1 key={key}>{element.value}</h1>
+                                            return <h1 key={key}>{element.value}</h1>;
                                         case "text":
-                                            return <TextElement key={key} title={element.title} value={element.value}/>
+                                            return <TextElement key={key} title={element.title} value={element.value}/>;
+                                        default :
+                                            return null;
                                     }
                                 })}
+                                {course[0] &&
+                                <Link to={`/course/${this.courseId}/${course[0].id}`}>Start Course</Link>}
                             </div>)
                         } else {
                             return <div>Loading...</div>
                         }
-
                     }}/>
                 </div>
             </div>
