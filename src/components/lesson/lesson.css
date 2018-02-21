@@ -12,14 +12,14 @@
 
 }
 
-.lessonBody{
-    background: whitesmoke;
+.lessonBody {
+    background: #F8F8FF;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
     padding: 10px;
-    grid-area:lesson;
-    display:flex;
+    grid-area: lesson;
+    display: flex;
     flex-direction: column;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
@@ -47,5 +47,28 @@
     -moz-border-radius: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.lesson {
+    font-size: 16px;
+    font-family: Roboto, sans-serif;
+    display: grid;
+    grid-gap: 30px;
+    padding: 0 16px;
+}
+
+.btnNext {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: aquamarine;
+    padding: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    justify-self: center;
+}
+
+.btnNext:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 

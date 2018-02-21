@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {getCoursesLessons, getAllUserCourses, addCourseToUser, getLessonById} from '../../base';
-import './Lessons.css';
 import {Link, Route} from "react-router-dom";
 import Lesson from "../lesson/Lesson";
 import {getLessonIdFromPathName, objectToArray} from "../../util/util";
@@ -61,15 +60,19 @@ export default class Lessons extends Component {
                                 {elements.map((element, key) => {
                                     switch (element.type) {
                                         case "title":
-                                            return <h2 style={{textAlign:`center`, paddingTop:`5px`}} key={key}>{element.value}</h2>;
+                                            return <h2 style={{textAlign: `center`, paddingTop: `5px`}}
+                                                       key={key}>{element.value}</h2>;
                                         case "text":
                                             return <TextElement key={key} title={element.title} value={element.value}/>;
+                                        case "link":
+                                            return <a key={key} href={element.href} target='blank'>{element.value}</a>;
                                         default :
                                             return null;
                                     }
                                 })}
-                                {course[0] &&
-                                <Link className="btnNext" to={`/course/${this.courseId}/${course[0].id}`}>Zapocnite Kurs</Link>}
+                                {course && course[0] &&
+                                <Link className="btnNext" to={`/course/${this.courseId}/${course[0].id}`}>Zapocnite
+                                    Kurs</Link>}
                             </div>)
                         } else {
                             return <div>Loading...</div>
