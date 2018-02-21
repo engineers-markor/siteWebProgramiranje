@@ -57,11 +57,11 @@ export default class Lessons extends Component {
                         if (this.state.overview) {
                             const {overview} = this.state;
                             const elements = objectToArray(overview);
-                            return (<div>
+                            return (<div className="lesson">
                                 {elements.map((element, key) => {
                                     switch (element.type) {
                                         case "title":
-                                            return <h1 key={key}>{element.value}</h1>;
+                                            return <h2 style={{textAlign:`center`, paddingTop:`5px`}} key={key}>{element.value}</h2>;
                                         case "text":
                                             return <TextElement key={key} title={element.title} value={element.value}/>;
                                         default :
@@ -69,7 +69,7 @@ export default class Lessons extends Component {
                                     }
                                 })}
                                 {course[0] &&
-                                <Link to={`/course/${this.courseId}/${course[0].id}`}>Start Course</Link>}
+                                <Link className="btnNext" to={`/course/${this.courseId}/${course[0].id}`}>Zapocnite Kurs</Link>}
                             </div>)
                         } else {
                             return <div>Loading...</div>
