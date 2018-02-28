@@ -49,7 +49,20 @@ export default class Lesson extends Component {
                             case "text":
                                 return <TextElement key={key} title={element.title} value={element.value}/>;
                             case "link":
-                                return <a key={key} href={element.href} target='blank'>{element.value}</a>
+                                return <a key={key} href={element.href} target='blank'>{element.value}</a>;
+                            case "image":
+                                return <img key={key} style={{
+                                    margin: `0px auto`,
+                                    width: `70%`,
+                                    paddingTop: `5px`
+                                }}
+                                            src={element.src}
+                                            alt={element.alt}/>;
+                            case "list":
+                                return (
+                                    <ol key={key}>
+                                        {element.list.map((ul, k) => <li key={k}>{ul}</li>)}
+                                    </ol>);
                             default :
                                 return null;
                         }

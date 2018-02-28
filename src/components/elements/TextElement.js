@@ -2,8 +2,8 @@ import React from 'react';
 
 const TextElement = ({title, value}) => (
     <div>
-        <h3>{title}</h3>
-        <p>{value}</p>
+        {title && <h3>{title}</h3>}
+        {value && <p>{value}</p>}
     </div>
 );
 
