@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './home.css';
 import img1 from '../../img/background1.jpg';
 import img2 from '../../img/background2.jpg';
@@ -51,8 +51,8 @@ export default class Home extends Component {
                 {this.state.images.map((img, index) => {
                     return (
                         <div key={index}
-                             className={this.state.showImg[index] ? 'home-main-img show' : 'home-main-img hide'}>
-                            <img src={img} alt=''/>
+                            className={this.state.showImg[index] ? 'home-main-img show' : 'home-main-img hide'}>
+                            <img src={img} alt='' />
                         </div>
                     )
                 })}

@@ -3,6 +3,7 @@ import {getLessonById} from '../../base';
 import './lesson.css';
 import TextElement from '../elements/TextElement';
 import {getLessonIdFromPathName, objectToArray} from '../../util/util';
+import {Visibility} from 'semantic-ui-react';
 
 
 export default class Lesson extends Component {
@@ -13,6 +14,7 @@ export default class Lesson extends Component {
             lesson: {},
             lessonId: ''
         }
+        this.handleUpdate = this.handleUpdate.bind(this);
     }
 
     componentWillMount() {
@@ -35,6 +37,15 @@ export default class Lesson extends Component {
         }
     }
 
+    handleUpdate = (e, {calculations, children}) => {
+        const key = children.key;
+        if (calculations.onScreen) {
+            this.refs[key].play();
+        } else {
+            this.refs[key].pause();
+        }
+    };
+
     render() {
         const lesson = objectToArray(this.state.lesson);
         return (
@@ -44,10 +55,14 @@ export default class Lesson extends Component {
                     {lesson.map((element, key) => {
                         switch (element.type) {
                             case "title":
-                                return <h2 style={{textAlign: `center`, paddingTop: `5px`}}
-                                           key={key}>{element.value}</h2>;
+                                return (
+                                    <h2 key={key} style={{textAlign: `center`, paddingTop: `5px`}}
+                                    >{element.value}</h2>
+                                );
                             case "text":
-                                return <TextElement key={key} title={element.title} value={element.value}/>;
+                                return (
+                                    <TextElement key={key} title={element.title} value={element.value}/>
+                                );
                             case "link":
                                 return <a key={key} href={element.href} target='blank'>{element.value}</a>;
                             case "image":
@@ -63,7 +78,17 @@ export default class Lesson extends Component {
                                     <ol key={key}>
                                         {element.list.map((ul, k) => <li key={k}>{ul}</li>)}
                                     </ol>);
-                            default :
+                            case "video":
+                                return (
+                                    <Visibility style={{
+                                        margin: `0px auto`
+                                    }} key={key} onUpdate={this.handleUpdate}>
+                                        <video ref={key} width="640" height="480" key={key} loop>
+                                            <source src={element.src} type="video/mp4"/>
+                                        </video>
+                                    </Visibility>
+                                );
+                            default:
                                 return null;
                         }
                     })}
