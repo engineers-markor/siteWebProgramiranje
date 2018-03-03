@@ -148,8 +148,7 @@ class App extends Component {
                 <Footer cl="footer"/>
 
                 <aside
-                    className={this
-                        .state
+                    className={this.state
                         .asideClass
                         .join(' ')}
                     onClick={this.hideAside}>
