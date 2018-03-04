@@ -14,7 +14,6 @@ export default class Lesson extends Component {
             lesson: {},
             lessonId: ''
         };
-        this.btnTop = null;
 
         this.handleUpdate = this.handleUpdate.bind(this);
     }
@@ -64,7 +63,17 @@ export default class Lesson extends Component {
 
     goTop(e) {
         e.preventDefault();
-        window.scrollTo(0, 0);
+        const animateToTop = () => {
+            window.requestAnimationFrame(() => {
+
+                if (window.scrollY === 0) {
+                    return
+                }
+                window.scrollTo(0, window.pageYOffset - 80);
+                animateToTop();
+            });
+        };
+        animateToTop();
     }
 
     render() {
@@ -115,7 +124,7 @@ export default class Lesson extends Component {
                     })}
                 </div>
                 {this.state.btnTopVisible &&
-                <button ref={(e) => this.btnTop = e} className="btnToTop" onClick={this.goTop}>
+                <button className="btnToTop" onClick={this.goTop}>
                     <i className="fa fa-arrow-up"/>
                 </button>}
             </div>
