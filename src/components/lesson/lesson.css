@@ -9,15 +9,14 @@
 .lessonsList {
     grid-area: lessonList;
     display: flex;
-
 }
 
 .lessonBody {
     background: #F8F8FF;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    padding: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 36px;
     grid-area: lesson;
     display: flex;
     flex-direction: column;
@@ -60,7 +59,7 @@
 .btnNext {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background: aquamarine;
-    padding: 5px;
+    padding: 12px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -69,6 +68,36 @@
 
 .btnNext:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.textCenter {
+    text-align: center;
+    padding-top: 30px;
+}
+
+.centerDiv {
+    margin: 0 auto;
 
 }
+
+.btnToTop {
+    background: #4183c4;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    border: 0;
+    padding: 10px;
+    color: whitesmoke;
+    position: fixed;
+    right: 26px;
+    bottom: 42px;
+    outline: none;
+}
+
+.btnToTop:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
 

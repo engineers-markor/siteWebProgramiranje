@@ -1,45 +1,49 @@
-.form{
-    display: flex;
-    flex-direction: column;
+.form {
+    display: grid;
+    grid-gap: 30px;
+    margin-top: 30px;
     justify-content: center;
+    align-content: flex-start;
     text-align: center;
+
 }
 
-.singup{
-    width: 210px;
+.formBox {
+    background: white;
     display: flex;
     flex-direction: column;
     margin: 10px auto;
-    border-radius: 5px;
-    padding: 8px;    
+
+    padding: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.singup input{
-    margin: 5px;
+
+.formBox input {
+    margin: 7px;
     padding: 5px;
-    border-radius: 2px;    
+    border: 1px solid lightgray;
 }
 
-.login{
-    width: 210px;    
-    display: flex;
-    flex-direction: column;
-    margin: 10px auto;
-    border-radius: 5px;
-    padding: 8px;   
-}
+.button {
 
-.login input{
-    margin: 5px;
-    padding: 5px;
-    border-radius: 2px;        
-}
-
-.button{
-    background: black;
+    margin: 16px;
+    background: #4183c4;
     color: white;
-    border:0;
+    font-weight: bold;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 12px;
+    border: 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
-.error{
-    color:red;
+.button:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.error {
+    color: red;
 }

@@ -16,7 +16,7 @@ export default class Login extends Component {
             redirect: false,
             loading: false,
             errorMessage: ''
-        }
+        };
         this.createAccount = this
             .createAccount
             .bind(this);
@@ -191,7 +191,26 @@ export default class Login extends Component {
         return (
             <div className="form">
 
-                <form onSubmit={this.createAccount} className="singup">
+                <form className="formBox" onSubmit={this.login}>
+                    <h5>Log In</h5>
+                    <input
+                        className="email"
+                        onBlur={this.writeError}
+                        type="email"
+                        value={this.state.loginEmail}
+                        onChange={this.setLoginEmail}
+                        placeholder="Email"/>
+                    <input
+                        className="password"
+                        onBlur={this.writeError}
+                        placeholder="Password"
+                        type="password"
+                        value={this.state.loginPassword}
+                        onChange={this.setLoginPassword}/>
+                    <button className="button" type="submit">Log In</button>
+                </form>
+
+                <form onSubmit={this.createAccount} className="formBox">
                     <h5>Create new Account</h5>
                     <input
                         type="text"
@@ -212,27 +231,10 @@ export default class Login extends Component {
                         type="password"
                         value={this.state.password}
                         onChange={this.setPassword}/>
-                    <input className="button" type="submit" value="Create Account"/>
+                    <button className="button" type="submit">Create Account</button>
                 </form>
 
-                <form className="login" onSubmit={this.login}>
-                    <h5>Log In</h5>
-                    <input
-                        className="email"
-                        onBlur={this.writeError}
-                        type="email"
-                        value={this.state.loginEmail}
-                        onChange={this.setLoginEmail}
-                        placeholder="Email"/>
-                    <input
-                        className="password"
-                        onBlur={this.writeError}
-                        placeholder="Password"
-                        type="password"
-                        value={this.state.loginPassword}
-                        onChange={this.setLoginPassword}/>
-                    <input className="button" type="submit" value="Log In"/>
-                </form>
+
                 <div className="errorMessage">
                     <h1>{this.state.errorMessage}</h1>
                 </div>

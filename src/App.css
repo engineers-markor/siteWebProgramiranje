@@ -39,17 +39,19 @@
 }
 
 .shadow {
+    color: whitesmoke;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background: white;
-    padding: 5px;
+    background: #4183c4;
+    padding: 10px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
 
-.shadow:hover{
+.shadow:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
+    color: whitesmoke;
 }
 
 .main {

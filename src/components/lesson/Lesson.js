@@ -13,16 +13,23 @@ export default class Lesson extends Component {
         this.state = {
             lesson: {},
             lessonId: ''
-        }
+        };
+        this.btnTop = null;
+
         this.handleUpdate = this.handleUpdate.bind(this);
     }
 
     componentWillMount() {
+        document.addEventListener('scroll', this.handleScroll);
         getLessonById(this.props.match.params.lessonId).then(lesson => {
             this.setState({
                 lesson
             })
         });
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('scroll', this.handleScroll);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -31,11 +38,20 @@ export default class Lesson extends Component {
             getLessonById(lessonId).then(lesson => {
                 this.setState({
                     lesson,
-                    lessonId
+                    lessonId,
+                    btnTopVisible: false,
                 })
             })
         }
     }
+
+    handleScroll = () => {
+        if (window.scrollY > 130) {
+            this.setState({btnTopVisible: true});
+        } else {
+            this.setState({btnTopVisible: false});
+        }
+    };
 
     handleUpdate = (e, {calculations, children}) => {
         const key = children.key;
@@ -46,18 +62,25 @@ export default class Lesson extends Component {
         }
     };
 
+    goTop(e) {
+        e.preventDefault();
+        window.scrollTo(0, 0);
+    }
+
     render() {
+        console.log();
         const lesson = objectToArray(this.state.lesson);
         return (
             <div>
-                <h2>{lesson.name}</h2>
                 <div className="lesson">
                     {lesson.map((element, key) => {
                         switch (element.type) {
                             case "title":
                                 return (
-                                    <h2 key={key} style={{textAlign: `center`, paddingTop: `5px`}}
-                                    >{element.value}</h2>
+                                    <div key={key} className="textCenter">
+                                        <h2 key={key}
+                                        >{element.value}</h2>
+                                    </div>
                                 );
                             case "text":
                                 return (
@@ -66,23 +89,21 @@ export default class Lesson extends Component {
                             case "link":
                                 return <a key={key} href={element.href} target='blank'>{element.value}</a>;
                             case "image":
-                                return <img key={key} style={{
-                                    margin: `0px auto`,
-                                    width: `70%`,
-                                    paddingTop: `5px`
-                                }}
+                                return <img className="centerDiv "
+                                            key={key} width="640px"
                                             src={element.src}
                                             alt={element.alt}/>;
                             case "list":
                                 return (
-                                    <ol key={key}>
-                                        {element.list.map((ul, k) => <li key={k}>{ul}</li>)}
-                                    </ol>);
+                                    <div key={key}>
+                                        <h3>{element.title}</h3>
+                                        <ol>
+                                            {element.list.map((ul, k) => <li key={k}>{ul}</li>)}
+                                        </ol>
+                                    </div>);
                             case "video":
                                 return (
-                                    <Visibility style={{
-                                        margin: `0px auto`
-                                    }} key={key} onUpdate={this.handleUpdate}>
+                                    <Visibility className="centerDiv" key={key} onUpdate={this.handleUpdate}>
                                         <video ref={key} width="640" height="480" key={key} loop>
                                             <source src={element.src} type="video/mp4"/>
                                         </video>
@@ -93,6 +114,10 @@ export default class Lesson extends Component {
                         }
                     })}
                 </div>
+                {this.state.btnTopVisible &&
+                <button ref={(e) => this.btnTop = e} className="btnToTop" onClick={this.goTop}>
+                    <i className="fa fa-arrow-up"/>
+                </button>}
             </div>
         )
     }
