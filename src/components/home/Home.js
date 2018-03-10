@@ -30,8 +30,6 @@ const listFrameworks = {
     title: "Frameworks"
 };
 
-const youtube = {title: "Video dana", src: "https://www.youtube.com/embed/yfVksKqDaA8?showinfo=0"};
-
 
 export default class Home extends Component {
 
