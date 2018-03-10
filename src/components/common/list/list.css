@@ -1,0 +1,44 @@
+.title {
+    text-align: center;
+}
+
+.list {
+    padding: 0;
+    list-style-type: none;
+    display: grid;
+    grid-gap: 10px;
+    margin: 10px;
+}
+
+.list a {
+    background: linear-gradient(to right, rgba(255, 0, 0, 0), whitesmoke);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.list a:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: linear-gradient(to right, rgba(0, 255, 255, .2), whitesmoke);
+}
+
+.list img {
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    color: a
+}
+
+.list li {
+    line-height: 50px;
+    font-weight: bold;
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    grid-gap: 20px;
+}
+
+.list h4 {
+    margin: 0;
+    align-self: center;
+}

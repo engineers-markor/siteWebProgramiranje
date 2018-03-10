@@ -83,7 +83,7 @@ const addCourseToUser = (courseId, listLessons) => {
     });
 };
 
-const getLessonById = (lessonId)=>{
+const getLessonById = (lessonId) => {
     return new Promise((resolve, reject) => {
         base.fetch(`lessons/${lessonId}`, {context: this}).then(lesson => {
             if (lesson) {
@@ -93,6 +93,16 @@ const getLessonById = (lessonId)=>{
             }
         }).catch(error => reject(error))
     });
+};
+
+const loadYoutube = () => {
+    return new Promise(resolve => {
+        base.fetch(`ui/youtube`, {context: this}).then(youtube => {
+            if (youtube) {
+                resolve(youtube);
+            }
+        })
+    })
 };
 
 export {
@@ -105,5 +115,6 @@ export {
     getAllUserCourses,
     addCourseToUser,
     getUserCourseById,
-    getLessonById
+    getLessonById,
+    loadYoutube
 }

@@ -75,17 +75,24 @@
     grid-area: leftBar;
     display: grid;
     grid-gap: 32px;
+    grid-template-rows: 1fr 1fr;
 }
 
 .leftBar-item {
-    padding: 24px;
-    background: aqua;
+    /*padding: 24px;*/
+    /*background: aqua;*/
     border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 }
 
 .leftBar-item:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+}
+
+.bg-white {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    background: rgba(0, 255, 255, .2);
 }
 
 .bottomBar {
