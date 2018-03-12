@@ -100,6 +100,7 @@ export default class Lesson extends Component {
                             case "image":
                                 return <img className="centerDiv "
                                             key={key} width="640px"
+                                            height={`${element.height}px`}
                                             src={element.src}
                                             alt={element.alt}/>;
                             case "list":

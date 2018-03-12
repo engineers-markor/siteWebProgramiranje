@@ -107,10 +107,30 @@ export default class Home extends Component {
                     </article>
 
                 </section>
-                <div className="bottomBar">
+                <section className="bottomBar">
+                    <h2>Nasi kursevi</h2>
 
-                </div>
-
+                    <Link to="/courses">
+                        <article>
+                            <img
+                                width="200px"
+                                height="200px"
+                                src="https://firebasestorage.googleapis.com/v0/b/javascriptlesson-49720.appspot.com/o/courseLogo%2Fa2.png?alt=media&token=5bd508e0-d586-4551-ac20-e15e23eb1f21"
+                                alt="javaScript"/>
+                            <h3>Inside JavaScript</h3>
+                        </article>
+                    </Link>
+                    <Link to="/courses">
+                        <article>
+                            <img
+                                width="200px"
+                                height="200px"
+                                src="https://firebasestorage.googleapis.com/v0/b/javascriptlesson-49720.appspot.com/o/courseLogo%2Fa1.png?alt=media&token=649d01f5-ed23-45af-b33a-43bb28e6fb23"
+                                alt="javaScript"/>
+                            <h3>Inside React</h3>
+                        </article>
+                    </Link>
+                </section>
             </div>
         )
     }

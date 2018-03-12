@@ -96,11 +96,35 @@
 }
 
 .bottomBar {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 10px;
-    background: aquamarine;
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+    /*border-radius: 10px;*/
+    /*background: aquamarine;*/
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 200px 200px;
     grid-area: bottomBar;
+    display: grid;
+    text-align: center;
+    grid-gap: 32px;
+
+}
+.bottomBar h2{
+    align-self: flex-end;
+    grid-column: 1/3;
+    border-bottom: 1px solid lightgray;
 }
 
+.bottomBar article{
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 200px;
+    background: #e0e7e2;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+}
+
+.bottomBar img{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
 
 
