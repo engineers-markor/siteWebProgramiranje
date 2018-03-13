@@ -1,0 +1,20 @@
+.about {
+    display: grid;
+    grid-template-rows: 100px auto 1fr;
+}
+
+.about img {
+    justify-self: center;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.about div {
+    text-align: center;
+    justify-self: center;
+    width: 500px;
+}
